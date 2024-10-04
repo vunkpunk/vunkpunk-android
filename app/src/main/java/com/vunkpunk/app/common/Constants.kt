@@ -3,11 +3,9 @@ package com.vunkpunk.app.common
 
 object Constants {
 
-//    const val BASE_URL = "http://158.160.84.156:5000/api"
-    const val BASE_URL = "http://10.0.2.2:8000/api"
+    const val BASE_URL = "http://158.160.84.156:5000/api"
+    
     const val PARAM_USER_ID = "userId"
-
-    const val USER_ID = "3"
 
     const val PARAM_CARD_ID = "cardId"
 
