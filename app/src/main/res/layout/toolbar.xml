@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/darker_gray"
+    android:padding="16dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/menu_icon"
+            android:drawableEnd="@drawable/searchbar_baseline_search_24"
+            android:ems="10"
+            android:layout_centerInParent="true"
+            android:hint="@string/search_bar_text"
+            android:padding="8dp"
+            android:background="@drawable/searchbar_bg"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:inputType="text" />
+
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:id="@+id/menu_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/searchbar_baseline_menu_24" />
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

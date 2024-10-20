@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">vunkpunk</string>
+    <string name="search_bar_text">Search</string>
 </resources>
