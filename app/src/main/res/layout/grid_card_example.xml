@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="150dp"
+    android:layout_height="290dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/card_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/card_image" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/card_bg">
+
+        <TextView
+            android:id="@+id/card_title"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/card_dormitory"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_title" />
+
+        <TextView
+            android:id="@+id/card_price"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:singleLine="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_dormitory" />
+
+        <TextView
+            android:id="@+id/card_rating"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/card_price"
+            app:layout_constraintTop_toBottomOf="@+id/card_dormitory" />
+
+        <ImageView
+            android:id="@+id/card_star_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/card_star_img"
+            android:src="@drawable/card_baseline_star_border_24"
+            app:layout_constraintStart_toEndOf="@+id/card_rating"
+            app:layout_constraintTop_toBottomOf="@+id/card_dormitory"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

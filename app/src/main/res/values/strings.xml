@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">vunkpunk</string>
     <string name="search_bar_text">Search</string>
+    <string name="tags">Tags:</string>
+    <string name="tag_1">tag_1</string>
+    <string name="tag_2">tag_2</string>
+    <string name="tag_3">tag_3</string>
+    <string name="tag_4">tag_4</string>
+    <string name="add_tag">+</string>
+    <string name="card_image">Picture of Product</string>
+    <string name="card_star_img">Star vector picture for product rating</string>
 </resources>
