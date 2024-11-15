@@ -50,6 +50,10 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
@@ -70,6 +74,11 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // Dagger
     implementation(libs.com.google.dagger)
     kapt(libs.com.google.dagger.compiler)
+
+    // Hilt
+    implementation(libs.com.google.hilt)
+    kapt(libs.com.google.hilt.compiler)
 }
