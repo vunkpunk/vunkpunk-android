@@ -1,11 +1,19 @@
 package com.vunkpunk.app.presentation.test
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+//import androidx.compose.ui.Alignment
+//import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+//import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
@@ -22,7 +30,25 @@ fun TestScreen(
     navController: NavController,
     viewModel: TestViewModel = hiltViewModel()
 ) {
-    Text(
-        text = "Hello ARTEM!",
-    )
+    viewModel.state.value.user.toString()
+    var text by remember { mutableStateOf("None") }
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        // Текст, который обновляется
+        Text(text = text.toString())
+
+        Spacer(modifier = Modifier.height(16.dp)) // Отступ между текстом и кнопкой
+
+        // Кнопка для обновления текста
+        Button(onClick = {
+            text = viewModel.state.value.user.toString()
+            Log.d("TestScreen", text)
+        }) {
+            Text("Обновить текст")
+        }
+    }
 }

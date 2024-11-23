@@ -1,5 +1,6 @@
 package com.vunkpunk.app.presentation.test
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
@@ -24,12 +25,16 @@ class TestViewModel @Inject constructor(
     val state: State<TestState> = _state
 
     init {
-        savedStateHandle.get<String>(Constants.PARAM_COIN_ID)?.let { userId ->
+        savedStateHandle[Constants.PARAM_USER_ID] = "1"
+        savedStateHandle.get<String>(Constants.PARAM_USER_ID)?.let { userId ->
             getUser(userId)
         }
+        Log.d("TestViewModel", "end of init part")
     }
 
     private fun getUser(userId: String) {
+        Log.d("TestViewModel", "start of getUser func with userId=$userId")
+
         getUserUseCase(userId).onEach { result ->
             when (result) {
                 is Resource.Success -> {
@@ -45,5 +50,6 @@ class TestViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
+        Log.d("TestViewModel", "getUserUseCase was called")
     }
 }

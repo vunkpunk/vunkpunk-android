@@ -88,5 +88,5 @@ dependencies {
     // Retrofit
     implementation(libs.com.squareup.retrofit2)
     implementation(libs.com.squareup.retrofit2.converter.gson)
-
+//    implementation(libs.com.squareup.retrofit2.adapter.rxjava2)
 }
