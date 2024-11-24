@@ -2,6 +2,7 @@ package com.vunkpunk.app.data.remote
 
 import android.util.Log
 import com.google.gson.Gson
+import com.vunkpunk.app.common.Constants.BASE_URL
 import com.vunkpunk.app.common.Token.TOKEN
 import com.vunkpunk.app.data.remote.dto.UserDto
 import io.ktor.client.HttpClient
@@ -16,7 +17,7 @@ class UserApiImpl @Inject constructor(
 ) : UserApi {
 
     override suspend fun getUserById(userId: String): UserDto {
-        val resp = client.get("http://10.0.2.2:8000/api/user/$userId") {
+        val resp = client.get("$BASE_URL/user/$userId") {
             header("Authorization", "Token ${TOKEN}")
         }
         val user = gson.fromJson(resp.bodyAsText(), UserDto::class.java)
