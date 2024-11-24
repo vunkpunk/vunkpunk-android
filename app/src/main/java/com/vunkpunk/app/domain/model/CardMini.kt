@@ -1,7 +1,6 @@
 package com.vunkpunk.app.domain.model
 
 data class CardMini(
-    val description: String,
     val id: Int,
     val is_published: Boolean,
     val price: String,
@@ -9,3 +8,5 @@ data class CardMini(
     val title: String,
     val user: Int
 )
+// общага
+// картинка

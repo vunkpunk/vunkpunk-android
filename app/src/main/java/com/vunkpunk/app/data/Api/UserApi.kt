@@ -1,7 +1,7 @@
-package com.vunkpunk.app.domain.repository
+package com.vunkpunk.app.data.Api
 
 import com.vunkpunk.app.data.dto.UserDto
 
-interface UserRepository {
+interface UserApi {
     suspend fun getUserById(userId: String): UserDto
 }

@@ -1,4 +1,4 @@
-package com.vunkpunk.app.data.remote.dto
+package com.vunkpunk.app.data.dto
 
 import com.vunkpunk.app.domain.model.CardDetail
 import com.vunkpunk.app.domain.model.CardMini
@@ -28,7 +28,6 @@ fun CardDto.toCardDetail(): CardDetail {
 
 fun CardDto.toCardMini(): CardMini {
     return CardMini(
-        description = description,
         id = id,
         is_published = is_published,
         price = price,

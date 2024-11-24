@@ -1,10 +1,14 @@
-package com.vunkpunk.app.presentation.test
+package com.vunkpunk.app.presentation.main
+
 
 import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 //import androidx.compose.ui.Alignment
@@ -21,29 +25,29 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+//import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.vunkpunk.app.domain.model.CardMini
+import com.vunkpunk.app.presentation.main.components.Card
+import com.vunkpunk.app.presentation.test.TestViewModel
 
 @Composable
-fun TestScreen(
+fun MainScreen(
     navController: NavController,
-    viewModel: TestViewModel = hiltViewModel()
+    viewModel: MainViewModel = hiltViewModel()
 ) {
-    var text by remember { mutableStateOf("None") }
+    val state = viewModel.state.value
+    val cards: List<CardMini> = state.cardsMini
 
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+    LazyVerticalStaggeredGrid(
+        columns = StaggeredGridCells.Adaptive(150.dp),
+        contentPadding = PaddingValues(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalItemSpacing = 16.dp,
+        modifier = Modifier.fillMaxSize()
     ) {
-        Text(text = text)
+        items(cards) { card -> Card(card = card) }
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(onClick = {
-            text = viewModel.state.value.user.toString()
-        }) {
-            Text("Обновить текст")
-        }
     }
 }

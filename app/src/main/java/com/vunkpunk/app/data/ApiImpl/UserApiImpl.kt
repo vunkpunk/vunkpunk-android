@@ -1,10 +1,11 @@
-package com.vunkpunk.app.data.remote
+package com.vunkpunk.app.data.ApiImpl
 
 import android.util.Log
 import com.google.gson.Gson
 import com.vunkpunk.app.common.Constants.BASE_URL
 import com.vunkpunk.app.common.Token.TOKEN
-import com.vunkpunk.app.data.remote.dto.UserDto
+import com.vunkpunk.app.data.Api.UserApi
+import com.vunkpunk.app.data.dto.UserDto
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.header

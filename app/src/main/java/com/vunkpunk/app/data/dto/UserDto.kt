@@ -1,6 +1,5 @@
-package com.vunkpunk.app.data.remote.dto
+package com.vunkpunk.app.data.dto
 
-import com.vunkpunk.app.domain.model.CardDetail
 import com.vunkpunk.app.domain.model.User
 
 data class UserDto(

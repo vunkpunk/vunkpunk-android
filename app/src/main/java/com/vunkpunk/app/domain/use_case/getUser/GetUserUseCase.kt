@@ -1,8 +1,7 @@
 package com.vunkpunk.domain.use_case.getUser
 
-import android.util.Log
 import com.vunkpunk.app.common.Resource
-import com.vunkpunk.app.data.remote.dto.toUser
+import com.vunkpunk.app.data.dto.toUser
 import com.vunkpunk.app.domain.model.User
 import com.vunkpunk.app.domain.repository.UserRepository
 import javax.inject.Inject
