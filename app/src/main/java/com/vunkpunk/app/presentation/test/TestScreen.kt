@@ -30,7 +30,6 @@ fun TestScreen(
     navController: NavController,
     viewModel: TestViewModel = hiltViewModel()
 ) {
-    viewModel.state.value.user.toString()
     var text by remember { mutableStateOf("None") }
 
     Column(
@@ -38,12 +37,10 @@ fun TestScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Текст, который обновляется
-        Text(text = text.toString())
+        Text(text = text)
 
-        Spacer(modifier = Modifier.height(16.dp)) // Отступ между текстом и кнопкой
+        Spacer(modifier = Modifier.height(16.dp))
 
-        // Кнопка для обновления текста
         Button(onClick = {
             text = viewModel.state.value.user.toString()
             Log.d("TestScreen", text)

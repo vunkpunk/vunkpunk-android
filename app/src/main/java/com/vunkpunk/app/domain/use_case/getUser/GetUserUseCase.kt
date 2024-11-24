@@ -18,8 +18,6 @@ class GetUserUseCase @Inject constructor(
         try {
             emit(Resource.Loading<User>())
             val user = repository.getUserById(userId).toUser()
-//            val user = User("1", "2", "3", "4", "5")
-            Log.d("GetUserUseCase", "repository.getUserById with id=$userId was called")
             emit(Resource.Success<User>(user))
         } catch (e: HttpException) {
             emit(Resource.Error<User>(e.localizedMessage ?: "An unexpected error occured"))

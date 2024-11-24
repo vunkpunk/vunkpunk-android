@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vunkpunk.app.common.Constants
 import com.vunkpunk.app.common.Resource
-import com.vunkpunk.app.presentation.test.TestState
 import com.vunkpunk.domain.use_case.getUser.GetUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -29,27 +28,27 @@ class TestViewModel @Inject constructor(
         savedStateHandle.get<String>(Constants.PARAM_USER_ID)?.let { userId ->
             getUser(userId)
         }
-        Log.d("TestViewModel", "end of init part")
     }
 
     private fun getUser(userId: String) {
-        Log.d("TestViewModel", "start of getUser func with userId=$userId")
-
         getUserUseCase(userId).onEach { result ->
             when (result) {
                 is Resource.Success -> {
+                    Log.d("Resource", "msg")
                     _state.value = TestState(user = result.data)
+                    Log.d("Resource", _state.value.user.toString())
                 }
+
                 is Resource.Error -> {
                     _state.value = TestState(
                         error = result.message ?: "An unexpected error occured"
                     )
                 }
+
                 is Resource.Loading -> {
                     _state.value = TestState(isLoading = true)
                 }
             }
         }.launchIn(viewModelScope)
-        Log.d("TestViewModel", "getUserUseCase was called")
     }
 }
