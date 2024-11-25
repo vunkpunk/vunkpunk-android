@@ -12,8 +12,11 @@ class CardRepositoryImpl @Inject constructor(
 ) : CardRepository {
 
     override suspend fun getCards(): List<CardDto> {
-        Log.d("CardRepositoryImpl", "getCards was called")
         return api.getCards()
+    }
+
+    override suspend fun getCardById(cardId: String): CardDto {
+        return api.getCardById(cardId)
     }
 
 }

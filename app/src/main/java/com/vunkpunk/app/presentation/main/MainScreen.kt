@@ -24,7 +24,6 @@ fun MainScreen(
 ) {
     val state = viewModel.state.value
     val cards: List<CardMini> = state.cardsMini
-
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Adaptive(150.dp),
         contentPadding = PaddingValues(20.dp),
