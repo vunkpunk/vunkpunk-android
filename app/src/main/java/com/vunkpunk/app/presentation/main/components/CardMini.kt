@@ -12,18 +12,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.vunkpunk.app.domain.model.CardMini
+import com.vunkpunk.app.presentation.theme.GeneralBackgroundColor
+import com.vunkpunk.app.presentation.theme.GeneralTextColor
 
 @Composable
-fun Card(card: CardMini) {
-    Box(
+fun CardMini(card: CardMini) {
+    Surface(
         modifier = Modifier
-            .size(width = 150.dp, height = 290.dp).wrapContentSize(Alignment.Center)
+            .size(width = 150.dp, height = 290.dp).wrapContentSize(Alignment.Center),
+        shadowElevation = 4.dp,
+        shape = RoundedCornerShape(8.dp)
     ) {
         Column {
 
@@ -38,17 +41,18 @@ fun Card(card: CardMini) {
                 modifier = Modifier
                     .size(150.dp, 140.dp)
                     .clip(RoundedCornerShape(0.dp, 0.dp, 10.dp, 10.dp))
-                    .background(Color.LightGray)
+                    .background(GeneralBackgroundColor)
                     .padding(10.dp)
             ) {
                 Column {
                     Text(
                         card.title,
                         overflow = TextOverflow.Ellipsis,
+                        color = GeneralTextColor,
                         modifier = Modifier.size(130.dp, 40.dp)
                     )
                     Spacer(modifier = Modifier.size(130.dp, 10.dp))
-                    Text("НУЖНА ОБЩАГА", modifier = Modifier.size(130.dp, 30.dp))
+                    Text("НУЖНА ОБЩАГА", modifier = Modifier.size(130.dp, 30.dp), color = GeneralTextColor)
                     Row {
                         Box(Modifier.size(70.dp, 30.dp)) {
                             Text(card.price, modifier = Modifier.align(Alignment.CenterStart))
@@ -58,6 +62,7 @@ fun Card(card: CardMini) {
                             Text(
                                 card.rating.toString(),
                                 textAlign = TextAlign.Center,
+                                color = GeneralTextColor,
                                 modifier = Modifier.align(Alignment.Center)
                             )
                         }

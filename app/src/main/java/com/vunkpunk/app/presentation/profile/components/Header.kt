@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vunkpunk.app.R
 import com.vunkpunk.app.domain.model.User
+import com.vunkpunk.app.presentation.theme.GeneralTextColor
 
 @Composable
 fun Header(user: User?) {
@@ -38,8 +39,8 @@ fun Header(user: User?) {
             modifier = Modifier,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "First Name", fontSize = 20.sp)
-            Text(text = "Second Name", fontSize = 20.sp)
+            Text(text = "First Name", fontSize = 20.sp, color = GeneralTextColor)
+            Text(text = "Second Name", fontSize = 20.sp, color = GeneralTextColor)
         }
     }
 }
