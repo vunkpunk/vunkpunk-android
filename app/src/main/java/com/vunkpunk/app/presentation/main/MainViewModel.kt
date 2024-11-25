@@ -1,14 +1,11 @@
 package com.vunkpunk.app.presentation.main
 
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vunkpunk.app.common.Resource
 import com.vunkpunk.app.domain.use_case.getCards.GetCardsMiniUseCase
-import com.vunkpunk.app.presentation.test.TestState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

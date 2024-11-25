@@ -75,6 +75,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation(libs.io.coil.svg)
+    implementation(libs.io.coil.compose)
+
     // Dagger
     implementation(libs.com.google.dagger)
     kapt(libs.com.google.dagger.compiler)
