@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.vunkpunk.app.presentation.main.MainScreen
+import com.vunkpunk.app.presentation.profile.ProfileScreen
 import com.vunkpunk.app.presentation.test.TestScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,12 +21,12 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = Screen.MainScreen.route
+                    startDestination = Screen.ProfileScreen.route
                 ) {
                     composable(
-                        route = Screen.MainScreen.route
+                        route = Screen.ProfileScreen.route
                     ) {
-                        MainScreen(navController)
+                        ProfileScreen(navController)
                     }
                 }
             }
