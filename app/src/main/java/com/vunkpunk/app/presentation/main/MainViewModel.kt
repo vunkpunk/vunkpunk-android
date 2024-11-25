@@ -16,8 +16,8 @@ class MainViewModel @Inject constructor(
     private val getCardsMiniUseCase: GetCardsMiniUseCase,
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(CardsState())
-    val state: State<CardsState> = _state
+    private val _state = mutableStateOf(MainState())
+    val state: State<MainState> = _state
 
     init {
         getCards()
@@ -27,17 +27,17 @@ class MainViewModel @Inject constructor(
         getCardsMiniUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _state.value = CardsState(cardsMini = result.data ?: emptyList())
+                    _state.value = MainState(cardsMini = result.data ?: emptyList())
                 }
 
                 is Resource.Error -> {
-                    _state.value = CardsState(
+                    _state.value = MainState(
                         error = result.message ?: "An unexpected error occured"
                     )
                 }
 
                 is Resource.Loading -> {
-                    _state.value = CardsState(isLoading = true)
+                    _state.value = MainState(isLoading = true)
                 }
             }
         }.launchIn(viewModelScope)

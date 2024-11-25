@@ -6,8 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vunkpunk.app.common.Constants.USER_ID
 import com.vunkpunk.app.common.Resource
-import com.vunkpunk.app.domain.use_case.getCards.GetUserCardsMiniUseCase
-import com.vunkpunk.app.presentation.main.CardsState
+import com.vunkpunk.app.domain.model.CardMini
+import com.vunkpunk.app.domain.use_case.getCards.GetCardsMiniUseCase
+import com.vunkpunk.app.presentation.main.MainState
 import com.vunkpunk.domain.use_case.getUser.GetUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -15,16 +16,23 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 
+fun getUserCards(cards: List<CardMini>?, userId: String): List<CardMini>{
+    val output = mutableListOf<CardMini>()
+    cards?.map { if(it.user.toString() == userId) output.add(it)}
+    return output
+}
+
+
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase,
-    private val getUserCardsUseCase: GetUserCardsMiniUseCase
+    private val getCardsMiniUseCase: GetCardsMiniUseCase
 ) : ViewModel(){
     private val _user = mutableStateOf(ProfileState())
     val user: State<ProfileState> = _user
 
-    private val _cards = mutableStateOf(CardsState())
-    val cards: State<CardsState> = _cards
+    private val _cards = mutableStateOf(MainState())
+    val cards: State<MainState> = _cards
 
     init {
         getUser(USER_ID)
@@ -52,20 +60,20 @@ class ProfileViewModel @Inject constructor(
     }
 
     private fun getCardsFromUser(userId: String) {
-        getUserCardsUseCase(userId).onEach { result ->
+        getCardsMiniUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _cards.value = CardsState(cardsMini = result.data ?: emptyList())
+                    _cards.value = MainState(cardsMini = getUserCards(result.data, userId))
                 }
 
                 is Resource.Error -> {
-                    _cards.value = CardsState(
+                    _cards.value = MainState(
                         error = result.message ?: "An unexpected error occured"
                     )
                 }
 
                 is Resource.Loading -> {
-                    _cards.value = CardsState(isLoading = true)
+                    _cards.value = MainState(isLoading = true)
                 }
             }
         }.launchIn(viewModelScope)
