@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.vunkpunk.app.R
 import com.vunkpunk.app.presentation.Screen
+import com.vunkpunk.app.presentation.theme.GeneralBackgroundColor
 
 @Composable
 fun BottomNavigation(navController: NavController) {
@@ -35,7 +37,7 @@ fun BottomNavigation(navController: NavController) {
             Box(modifier = Modifier
                 .fillMaxHeight()
                 .weight(0.2f)
-                .background(Color.Red)
+                .background(GeneralBackgroundColor)
                 .clickable { navController.navigate(Screen.MainScreen.route) })
             {
                 Image(
@@ -44,11 +46,12 @@ fun BottomNavigation(navController: NavController) {
                     modifier = Modifier.fillMaxSize()
                 )
             }
+            VerticalDivider(color = Color.Black)
             // About
             Box(modifier = Modifier
                 .fillMaxHeight()
                 .weight(0.2f)
-                .background(Color.Green)
+                .background(GeneralBackgroundColor)
                 .clickable { }) {
                 Image(
                     painter = painterResource(R.drawable.baseline_info_24),
@@ -56,11 +59,12 @@ fun BottomNavigation(navController: NavController) {
                     modifier = Modifier.fillMaxSize()
                 )
             }
+            VerticalDivider(color = Color.Black)
             // CreateCard
             Box(modifier = Modifier
                 .fillMaxHeight()
                 .weight(0.2f)
-                .background(Color.Red)
+                .background(GeneralBackgroundColor)
                 .clickable { }) {
                 Image(
                     painter = painterResource(R.drawable.baseline_add_24),
@@ -68,12 +72,13 @@ fun BottomNavigation(navController: NavController) {
                     modifier = Modifier.fillMaxSize()
                 )
             }
+            VerticalDivider(color = Color.Black)
             // Settings
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
                     .weight(0.2f)
-                    .background(Color.Green)
+                    .background(GeneralBackgroundColor)
             ){
                 Image(
                     painter = painterResource(R.drawable.baseline_settings_24),
@@ -81,11 +86,12 @@ fun BottomNavigation(navController: NavController) {
                     modifier = Modifier.fillMaxSize()
                 )
             }
+            VerticalDivider(color = Color.Black)
             // Profile
             Box(modifier = Modifier
                 .fillMaxHeight()
                 .weight(0.2f)
-                .background(Color.Red)
+                .background(GeneralBackgroundColor)
                 .clickable { navController.navigate(Screen.ProfileScreen.route) }){
                 Image(
                     painter = painterResource(R.drawable.baseline_person_24),
