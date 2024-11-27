@@ -1,4 +1,4 @@
-package com.vunkpunk.app.presentation.main.components
+package com.vunkpunk.app.presentation.global_components
 
 import com.vunkpunk.app.R
 import androidx.compose.foundation.Image

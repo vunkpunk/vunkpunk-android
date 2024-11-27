@@ -27,7 +27,6 @@ import com.vunkpunk.app.domain.model.CardDetail
 import com.vunkpunk.app.domain.model.CardMini
 import com.vunkpunk.app.presentation.card_detail.components.Comment
 import com.vunkpunk.app.presentation.main.MainViewModel
-import com.vunkpunk.app.presentation.main.components.Card
 
 @Composable
 fun CardDetailScreen(

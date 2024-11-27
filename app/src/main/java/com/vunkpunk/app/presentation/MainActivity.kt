@@ -3,6 +3,7 @@ package com.vunkpunk.app.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material3.Card
 import androidx.compose.material3.Surface
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -22,12 +23,22 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = Screen.ProfileScreen.route
+                    startDestination = Screen.MainScreen.route
                 ) {
+                    composable(
+                        route = Screen.MainScreen.route
+                    ) {
+                        MainScreen(navController)
+                    }
                     composable(
                         route = Screen.ProfileScreen.route
                     ) {
                         ProfileScreen(navController)
+                    }
+                    composable(
+                        route = Screen.CardDetailScreen.route
+                    ) {
+                        CardDetailScreen(navController)
                     }
                 }
             }

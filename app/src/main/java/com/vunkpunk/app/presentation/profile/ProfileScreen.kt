@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.vunkpunk.app.domain.model.CardMini
-import com.vunkpunk.app.presentation.main.components.CardMini
+import com.vunkpunk.app.presentation.global_components.CardMini
 import com.vunkpunk.app.presentation.profile.components.Header
 import com.vunkpunk.app.presentation.profile.components.HistoryDivider
 import com.vunkpunk.app.presentation.profile.components.ProfileDescription
