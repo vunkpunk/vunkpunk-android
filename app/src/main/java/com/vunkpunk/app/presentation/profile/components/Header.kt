@@ -20,7 +20,7 @@ import com.vunkpunk.app.domain.model.User
 import com.vunkpunk.app.presentation.theme.GeneralTextColor
 
 @Composable
-fun Header(user: User?) {
+fun Header(user: User) {
     Row(modifier = Modifier
         .fillMaxWidth()
         .padding(horizontal = 30.dp),
@@ -39,8 +39,8 @@ fun Header(user: User?) {
             modifier = Modifier,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "First Name", fontSize = 20.sp, color = GeneralTextColor)
-            Text(text = "Second Name", fontSize = 20.sp, color = GeneralTextColor)
+            Text(text = user.first_name, fontSize = 20.sp, color = GeneralTextColor)
+            Text(text = user.last_name, fontSize = 20.sp, color = GeneralTextColor)
         }
     }
 }

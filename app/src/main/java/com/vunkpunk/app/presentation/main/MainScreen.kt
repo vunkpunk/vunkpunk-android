@@ -21,6 +21,7 @@ import com.vunkpunk.app.domain.model.CardMini
 import com.vunkpunk.app.presentation.Screen
 import com.vunkpunk.app.presentation.global_components.BottomNavigation
 import com.vunkpunk.app.presentation.global_components.CardMini
+import com.vunkpunk.app.presentation.global_components.HeadNavigation.HeaderNavigation
 import com.vunkpunk.app.presentation.profile.ProfileViewModel
 
 @Composable
@@ -30,10 +31,13 @@ fun MainScreen(
 ) {
 
     Scaffold(
+        topBar = {
+            HeaderNavigation()
+        },
         bottomBar = {
             BottomNavigation(navController)
         }
-    ) {  innerPadding ->
+    ) { innerPadding ->
         Content(navController = navController, viewModel = viewModel, padding = innerPadding)
     }
 
@@ -44,16 +48,19 @@ fun Content(navController: NavController, viewModel: MainViewModel, padding: Pad
     val state = viewModel.state.value
     val cards: List<CardMini> = state.cardsMini
 
-    Box(modifier = Modifier
-        .wrapContentSize()
-        .padding(padding))
-    LazyVerticalStaggeredGrid(
-        columns = StaggeredGridCells.Adaptive(150.dp),
-        contentPadding = PaddingValues(20.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-        verticalItemSpacing = 16.dp,
-        modifier = Modifier.fillMaxSize()
+    Box(
+        modifier = Modifier
+            .wrapContentSize()
+            .padding(padding)
     ) {
-        items(cards) { card -> CardMini(card = card, navController = navController) }
+        LazyVerticalStaggeredGrid(
+            columns = StaggeredGridCells.Adaptive(150.dp),
+            contentPadding = PaddingValues(20.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalItemSpacing = 16.dp,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            items(cards) { card -> CardMini(card = card, navController = navController) }
+        }
     }
 }

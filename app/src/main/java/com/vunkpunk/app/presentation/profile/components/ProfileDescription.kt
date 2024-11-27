@@ -32,13 +32,13 @@ import coil.compose.rememberImagePainter
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.vunkpunk.app.R
+import com.vunkpunk.app.domain.model.User
 import com.vunkpunk.app.presentation.theme.GeneralBackgroundColor
 import com.vunkpunk.app.presentation.theme.GeneralTextColor
 
 
-@Preview(showBackground = true)
 @Composable
-fun ProfileDescription() {
+fun ProfileDescription(user: User) {
 
     Surface(modifier = Modifier
         .background(color = GeneralBackgroundColor),
@@ -59,7 +59,7 @@ fun ProfileDescription() {
                     .padding(0.dp, 0.dp, 10.dp, 0.dp),
                     painter = rememberAsyncImagePainter(R.drawable.home),
                     contentDescription = null)
-                Text(text = "21 общежитие", fontSize = 20.sp, color = GeneralTextColor)
+                Text(text = user.dormitory, fontSize = 20.sp, color = GeneralTextColor)
             }
             Row(modifier = Modifier
                 .fillMaxWidth()
@@ -70,7 +70,7 @@ fun ProfileDescription() {
                     .padding(0.dp, 0.dp, 10.dp, 0.dp),
                     painter = painterResource(id = R.drawable.faculty),
                     contentDescription = null)
-                Text(text = "Матмех", fontSize = 20.sp, color = GeneralTextColor)
+                Text(text = user.faculty, fontSize = 20.sp, color = GeneralTextColor)
             }
             Row(modifier = Modifier
                 .fillMaxWidth()
@@ -81,7 +81,7 @@ fun ProfileDescription() {
                     .padding(0.dp, 0.dp, 10.dp, 0.dp),
                     painter = painterResource(id = R.drawable.contact),
                     contentDescription = null)
-                Text(text = "@iraedeus", fontSize = 20.sp, color = GeneralTextColor)
+                Text(text = user.contact.toString(), fontSize = 20.sp, color = GeneralTextColor)
             }
             Column(modifier = Modifier
                 .fillMaxWidth()
@@ -90,13 +90,12 @@ fun ProfileDescription() {
                     .fillMaxWidth()
                     .height(30.dp),
                     verticalAlignment = Alignment.CenterVertically) {
-                    Text(text = "О себе:", fontSize = 20.sp, color = GeneralTextColor)
+                    Text(text = "О себе", fontSize = 20.sp, color = GeneralTextColor)
                 }
             }
-            Text(text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
-                    " Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." +
-                    " Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
-                    " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id es", fontSize = 16.sp, color = GeneralTextColor)
+            Text(text = user.description,
+                fontSize = 16.sp,
+                color = GeneralTextColor)
 
         }
     }

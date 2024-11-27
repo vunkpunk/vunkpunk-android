@@ -6,6 +6,6 @@ import com.vunkpunk.app.domain.model.User
 data class ProfileState(
     val isLoading: Boolean = false,
     var user: User? = null,
-    var userMiniCards: List<CardMini> = emptyList<CardMini>(),
+    var userMiniCards: List<CardMini> = emptyList(),
     val error: String = ""
 )
