@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.vunkpunk.app.common.Constants.USER_ID
 import com.vunkpunk.app.common.Resource
 import com.vunkpunk.app.domain.model.CardMini
+import com.vunkpunk.app.domain.use_case.getCards.GetCardsMiniFromUserUseCase
 import com.vunkpunk.app.domain.use_case.getCards.GetCardsMiniUseCase
 import com.vunkpunk.app.presentation.main.MainState
 import com.vunkpunk.domain.use_case.getUser.GetUserUseCase
@@ -16,17 +17,10 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 
-fun getUserCards(cards: List<CardMini>?, userId: String): List<CardMini>{
-    val output = mutableListOf<CardMini>()
-    cards?.map { if(it.user.toString() == userId) output.add(it)}
-    return output
-}
-
-
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase,
-    private val getCardsMiniUseCase: GetCardsMiniUseCase
+    private val getCardsMiniFromUserUseCase: GetCardsMiniFromUserUseCase
 ) : ViewModel(){
     private val _user = mutableStateOf(ProfileState())
     val user: State<ProfileState> = _user
@@ -36,7 +30,7 @@ class ProfileViewModel @Inject constructor(
 
     init {
         getUser(USER_ID)
-        getCardsFromUser(USER_ID)
+        getCardsMiniFromUser(USER_ID)
     }
 
     private fun getUser(userId: String) {
@@ -59,11 +53,11 @@ class ProfileViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    private fun getCardsFromUser(userId: String) {
-        getCardsMiniUseCase().onEach { result ->
+    private fun getCardsMiniFromUser(userId: String) {
+        getCardsMiniFromUserUseCase(userId).onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _cards.value = MainState(cardsMini = getUserCards(result.data, userId))
+                    _cards.value = MainState(cardsMini = result.data ?: emptyList<CardMini>())
                 }
 
                 is Resource.Error -> {

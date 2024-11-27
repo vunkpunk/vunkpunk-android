@@ -36,4 +36,12 @@ class CardApiImpl @Inject constructor(
         return card
     }
 
+    override suspend fun getCardsByUserId(userId: String): List<CardDto> {
+        val resp = client.get("$BASE_URL/sales/?user_id=$userId") {
+            header("Authorization", "Token ${TOKEN}")
+        }
+        val cards = gson.fromJson(resp.bodyAsText(), Array<CardDto>::class.java).asList()
+        return cards
+    }
+
 }
