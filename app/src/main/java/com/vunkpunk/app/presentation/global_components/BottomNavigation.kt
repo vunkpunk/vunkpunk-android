@@ -52,7 +52,7 @@ fun BottomNavigation(navController: NavController) {
                 .fillMaxHeight()
                 .weight(0.2f)
                 .background(GeneralBackgroundColor)
-                .clickable { }) {
+                .clickable { navController.navigate(Screen.AboutScreen.route)}) {
                 Image(
                     painter = painterResource(R.drawable.baseline_info_24),
                     contentDescription = null,

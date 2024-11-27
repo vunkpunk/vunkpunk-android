@@ -15,7 +15,7 @@ import com.vunkpunk.app.common.Constants.PARAM_USER_ID
 import com.vunkpunk.app.presentation.card_detail.CardDetailScreen
 import com.vunkpunk.app.presentation.main.MainScreen
 import com.vunkpunk.app.presentation.profile.ProfileScreen
-import com.vunkpunk.app.presentation.test.TestScreen
+import com.vunkpunk.app.presentation.about.AboutScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,6 +43,11 @@ class MainActivity : ComponentActivity() {
                         route = Screen.CardDetailScreen.route + "/{$PARAM_CARD_ID}",
                     ) {
                         CardDetailScreen(navController)
+                    }
+                    composable(
+                        route = Screen.AboutScreen.route,
+                    ) {
+                        AboutScreen(navController)
                     }
                 }
             }
