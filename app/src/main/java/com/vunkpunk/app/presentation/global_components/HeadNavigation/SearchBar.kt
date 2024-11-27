@@ -2,6 +2,7 @@ package com.vunkpunk.app.presentation.global_components.HeadNavigation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,9 +17,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
@@ -32,14 +35,20 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.vunkpunk.app.R
+import com.vunkpunk.app.common.Constants.PARAM_SEARCH
+import com.vunkpunk.app.presentation.Screen
+import com.vunkpunk.app.presentation.main.MainState
+import com.vunkpunk.app.presentation.main.MainViewModel
 import com.vunkpunk.app.presentation.theme.GeneralBackgroundColor
 import com.vunkpunk.app.presentation.theme.GeneralTextColor
 import com.vunkpunk.app.presentation.theme.MinorTextColor
 
-@Preview
+
 @Composable
-fun SearchBar() {
+fun SearchBar(navController: NavController) {
     var text by remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
 
@@ -55,6 +64,9 @@ fun SearchBar() {
 
         // BasicTextField
         BasicTextField(modifier = Modifier
+            .clickable {
+                navController.navigate(Screen.MainScreen.route + "/${text}")
+            }
             .height(20.dp)
             .weight(1f),
             value = text,
@@ -83,8 +95,9 @@ fun SearchBar() {
         Spacer(modifier = Modifier.width(40.dp))
 
         Image(modifier = Modifier
-            .size(20.dp),
-            painter = painterResource(id = R.drawable.home),
+            .size(20.dp)
+            .clickable { text = "Opa" },
+            painter = painterResource(id = R.drawable.search),
             contentDescription = "")
 
         Spacer(modifier = Modifier.width(20.dp))

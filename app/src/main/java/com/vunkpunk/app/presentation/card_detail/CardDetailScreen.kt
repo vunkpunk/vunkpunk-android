@@ -40,7 +40,7 @@ fun CardDetailScreen(
 
     Scaffold(
         topBar = {
-            HeaderNavigation()
+            HeaderNavigation(navController)
         },
         bottomBar = {
             BottomNavigation(navController)

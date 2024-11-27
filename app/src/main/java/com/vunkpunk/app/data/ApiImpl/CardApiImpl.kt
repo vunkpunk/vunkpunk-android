@@ -44,4 +44,11 @@ class CardApiImpl @Inject constructor(
         return cards
     }
 
+    override suspend fun getCardsBySearch(paramSearch: String): List<CardDto> {
+        val resp = client.get("$BASE_URL/sales/?search=$paramSearch") {
+            header("Authorization", "Token ${TOKEN}")
+        }
+        val cards = gson.fromJson(resp.bodyAsText(), Array<CardDto>::class.java).asList()
+        return cards
+    }
 }

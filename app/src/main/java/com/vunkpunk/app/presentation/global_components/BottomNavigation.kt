@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.vunkpunk.app.R
+import com.vunkpunk.app.common.Constants.PARAM_SEARCH
 import com.vunkpunk.app.presentation.Screen
 import com.vunkpunk.app.presentation.theme.GeneralBackgroundColor
 
@@ -38,7 +39,7 @@ fun BottomNavigation(navController: NavController) {
                 .fillMaxHeight()
                 .weight(0.2f)
                 .background(GeneralBackgroundColor)
-                .clickable { navController.navigate(Screen.MainScreen.route) })
+                .clickable { navController.navigate(Screen.MainScreen.route + "/{$PARAM_SEARCH}") })
             {
                 Image(
                     painter = painterResource(R.drawable.baseline_home_24),

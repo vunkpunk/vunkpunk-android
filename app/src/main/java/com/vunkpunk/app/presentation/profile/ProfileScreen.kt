@@ -26,6 +26,7 @@ import com.vunkpunk.app.presentation.global_components.CardMini
 import com.vunkpunk.app.presentation.global_components.HeadNavigation.HeaderNavigation
 import com.vunkpunk.app.presentation.profile.components.Header
 import com.vunkpunk.app.presentation.profile.components.HistoryDivider
+import com.vunkpunk.app.presentation.profile.components.ListOfMiniCards
 import com.vunkpunk.app.presentation.profile.components.ProfileDescription
 import com.vunkpunk.app.presentation.theme.MinorBackgroundColor
 
@@ -38,7 +39,7 @@ fun ProfileScreen(
 
     Scaffold(
         topBar = {
-            HeaderNavigation()
+            HeaderNavigation(navController)
         },
         bottomBar = {
             BottomNavigation(navController)
@@ -52,7 +53,7 @@ fun ProfileScreen(
 @Composable
 fun Content(navController: NavController, viewModel: ProfileViewModel, padding: PaddingValues) {
     val user = viewModel.user.value
-    val cards: List<CardMini> = viewModel.cards.value.cardsMini
+    val allCards: List<CardMini> = viewModel.cards.value.cardsMini
 
     if(user.user == null){
         Box(modifier = Modifier.fillMaxSize()) {
@@ -83,19 +84,7 @@ fun Content(navController: NavController, viewModel: ProfileViewModel, padding: 
                 }
 
                 item {
-                    LazyVerticalStaggeredGrid(
-                        modifier = Modifier.height(1000.dp),
-                        columns = StaggeredGridCells.Adaptive(150.dp),
-                        horizontalArrangement = Arrangement.spacedBy(20.dp),
-                        verticalItemSpacing = 20.dp,
-                    ) {
-                        items(cards) { card ->
-                            CardMini(
-                                card = card,
-                                navController = navController
-                            )
-                        }
-                    }
+                    ListOfMiniCards(cards = allCards, navController = navController)
                 }
 
                 item {
@@ -105,19 +94,7 @@ fun Content(navController: NavController, viewModel: ProfileViewModel, padding: 
                 }
 
                 item {
-                    LazyVerticalStaggeredGrid(
-                        modifier = Modifier.height(1000.dp),
-                        columns = StaggeredGridCells.Adaptive(150.dp),
-                        horizontalArrangement = Arrangement.spacedBy(20.dp),
-                        verticalItemSpacing = 20.dp,
-                    ) {
-                        items(cards) { card ->
-                            CardMini(
-                                card = card,
-                                navController = navController
-                            )
-                        }
-                    }
+                    ListOfMiniCards(cards = allCards, navController = navController)
                 }
             }
         }

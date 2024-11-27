@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.vunkpunk.app.common.Constants.PARAM_CARD_ID
+import com.vunkpunk.app.common.Constants.PARAM_SEARCH
 import com.vunkpunk.app.common.Constants.PARAM_USER_ID
 import com.vunkpunk.app.presentation.card_detail.CardDetailScreen
 import com.vunkpunk.app.presentation.main.MainScreen
@@ -27,10 +28,10 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = Screen.MainScreen.route
+                    startDestination = Screen.MainScreen.route + "/{$PARAM_SEARCH}"
                 ) {
                     composable(
-                        route = Screen.MainScreen.route
+                        route = Screen.MainScreen.route + "/{$PARAM_SEARCH}"
                     ) {
                         MainScreen(navController)
                     }

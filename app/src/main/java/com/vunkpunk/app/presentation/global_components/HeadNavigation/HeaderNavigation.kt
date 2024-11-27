@@ -25,14 +25,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.vunkpunk.app.R
 import com.vunkpunk.app.presentation.theme.GeneralBackgroundColor
 import com.vunkpunk.app.presentation.theme.GeneralColor
 
-@Preview(showBackground = true)
+
 @Composable
-fun HeaderNavigation() {
-    var text by remember { mutableStateOf("Поиск") }
+fun HeaderNavigation(navController: NavController) {
     Box(modifier = Modifier.background(color = GeneralColor)) {
         Row(modifier = Modifier
             .fillMaxWidth()
@@ -47,7 +47,7 @@ fun HeaderNavigation() {
                 painter = painterResource(id = R.drawable.profile_avatar),
                 contentDescription = "")
 
-            SearchBar()
+            SearchBar(navController)
         }
     }
 }
