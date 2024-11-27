@@ -10,6 +10,7 @@ data class UserDto(
     val username: String,
     val photo: String?,
     val faculty: String,
+    val dormitory: String
 )
 
 
@@ -22,5 +23,6 @@ fun UserDto.toUser(): User {
         username = username,
         photo = photo,
         faculty = faculty,
+        dormitory = dormitory
     )
 }
