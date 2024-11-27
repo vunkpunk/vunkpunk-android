@@ -79,7 +79,7 @@ fun Content(navController: NavController, viewModel: ProfileViewModel, padding: 
                     horizontalArrangement = Arrangement.spacedBy(20.dp),
                     verticalItemSpacing = 20.dp,
                 ) {
-                    items(cards) { card -> CardMini(card = card) }
+                    items(cards) { card -> CardMini(card = card, navController = navController) }
                 }
             }
 
@@ -96,7 +96,7 @@ fun Content(navController: NavController, viewModel: ProfileViewModel, padding: 
                     horizontalArrangement = Arrangement.spacedBy(20.dp),
                     verticalItemSpacing = 20.dp,
                 ) {
-                    items(cards) { card -> CardMini(card = card) }
+                    items(cards) { card -> CardMini(card = card, navController = navController) }
                 }
             }
         }

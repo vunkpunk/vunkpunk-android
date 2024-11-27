@@ -25,7 +25,7 @@ class CardDetailViewModel @Inject constructor(
     val state: State<CardDetailState> = _state
 
     init {
-        savedStateHandle[Constants.PARAM_CARD_ID] = "1"
+//        savedStateHandle[Constants.PARAM_CARD_ID] = "1"
         savedStateHandle.get<String>(Constants.PARAM_CARD_ID)?.let { cardId ->
             getCard(cardId)
         }

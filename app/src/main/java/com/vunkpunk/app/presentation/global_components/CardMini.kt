@@ -3,6 +3,7 @@ package com.vunkpunk.app.presentation.global_components
 import com.vunkpunk.app.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -16,15 +17,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.vunkpunk.app.domain.model.CardMini
+import com.vunkpunk.app.presentation.Screen
 import com.vunkpunk.app.presentation.theme.GeneralBackgroundColor
 import com.vunkpunk.app.presentation.theme.GeneralTextColor
 
 @Composable
-fun CardMini(card: CardMini) {
+fun CardMini(card: CardMini, navController: NavController) {
     Surface(
         modifier = Modifier
-            .size(width = 150.dp, height = 290.dp).wrapContentSize(Alignment.Center),
+            .size(width = 150.dp, height = 290.dp)
+            .wrapContentSize(Alignment.Center)
+            .clickable { navController.navigate(Screen.CardDetailScreen.route + "/${card.id}") },
         shadowElevation = 4.dp,
         shape = RoundedCornerShape(8.dp)
     ) {
@@ -52,7 +57,11 @@ fun CardMini(card: CardMini) {
                         modifier = Modifier.size(130.dp, 40.dp)
                     )
                     Spacer(modifier = Modifier.size(130.dp, 10.dp))
-                    Text("НУЖНА ОБЩАГА", modifier = Modifier.size(130.dp, 30.dp), color = GeneralTextColor)
+                    Text(
+                        "НУЖНА ОБЩАГА",
+                        modifier = Modifier.size(130.dp, 30.dp),
+                        color = GeneralTextColor
+                    )
                     Row {
                         Box(Modifier.size(70.dp, 30.dp)) {
                             Text(card.price, modifier = Modifier.align(Alignment.CenterStart))

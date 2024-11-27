@@ -54,6 +54,6 @@ fun Content(navController: NavController, viewModel: MainViewModel, padding: Pad
         verticalItemSpacing = 16.dp,
         modifier = Modifier.fillMaxSize()
     ) {
-        items(cards) { card -> CardMini(card = card) }
+        items(cards) { card -> CardMini(card = card, navController = navController) }
     }
 }

@@ -5,9 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.Card
 import androidx.compose.material3.Surface
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.vunkpunk.app.common.Constants.PARAM_CARD_ID
+import com.vunkpunk.app.common.Constants.PARAM_USER_ID
 import com.vunkpunk.app.presentation.card_detail.CardDetailScreen
 import com.vunkpunk.app.presentation.main.MainScreen
 import com.vunkpunk.app.presentation.profile.ProfileScreen
@@ -36,7 +40,7 @@ class MainActivity : ComponentActivity() {
                         ProfileScreen(navController)
                     }
                     composable(
-                        route = Screen.CardDetailScreen.route
+                        route = Screen.CardDetailScreen.route + "/{$PARAM_CARD_ID}",
                     ) {
                         CardDetailScreen(navController)
                     }
