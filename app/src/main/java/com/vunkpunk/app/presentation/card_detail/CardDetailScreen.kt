@@ -62,6 +62,7 @@ fun Content(navController: NavController, viewModel: CardDetailViewModel, paddin
                     .fillMaxSize()
                     .padding(20.dp)
             ) {
+                // Title
                 item {
                     Spacer(
                         modifier = Modifier
@@ -83,7 +84,7 @@ fun Content(navController: NavController, viewModel: CardDetailViewModel, paddin
                 }
 
                 // Images
-                item {
+                item() {
                     Column(modifier = Modifier.size(360.dp)) {
                         Box(
                             modifier = Modifier
@@ -143,6 +144,7 @@ fun Content(navController: NavController, viewModel: CardDetailViewModel, paddin
                         Text("Контакт: НУЖУЕН КОНТАКТ")
                     }
                 }
+
                 // Comments
                 item {
                     Spacer(
