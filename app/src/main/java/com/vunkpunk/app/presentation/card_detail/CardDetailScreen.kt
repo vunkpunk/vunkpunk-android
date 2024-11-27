@@ -28,6 +28,7 @@ import com.vunkpunk.app.domain.model.CardDetail
 import com.vunkpunk.app.domain.model.CardMini
 import com.vunkpunk.app.presentation.card_detail.components.Comment
 import com.vunkpunk.app.presentation.global_components.BottomNavigation
+import com.vunkpunk.app.presentation.global_components.HeadNavigation.HeaderNavigation
 import com.vunkpunk.app.presentation.main.MainViewModel
 import com.vunkpunk.app.presentation.profile.ProfileViewModel
 
@@ -38,6 +39,9 @@ fun CardDetailScreen(
 ) {
 
     Scaffold(
+        topBar = {
+            HeaderNavigation()
+        },
         bottomBar = {
             BottomNavigation(navController)
         }
