@@ -1,5 +1,5 @@
 package com.vunkpunk.app.common
 
 object Token {
-    var TOKEN = "7366c865367dd940020d327cb5c67a583f6b24b7"
+    var TOKEN = "1c8acba4532c97eccd18f957915a2bc2896d571f"
 }

@@ -7,7 +7,8 @@ data class UserDto(
     val description: String,
     val first_name: String,
     val last_name: String,
-    val username: String
+    val username: String,
+    val photo: String?,
 )
 
 
@@ -18,5 +19,6 @@ fun UserDto.toUser(): User {
         first_name = first_name,
         last_name = last_name,
         username = username,
+        photo = photo,
     )
 }
