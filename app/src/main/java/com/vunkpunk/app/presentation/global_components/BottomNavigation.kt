@@ -68,11 +68,10 @@ fun BottomNavigation(navController: NavController) {
                 .fillMaxHeight()
                 .weight(0.2f)
                 .background(GeneralBackgroundColor)
-                .clickable { }) {
+                .clickable { navController.navigate(Screen.AboutScreen.route) }) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
-                    modifier = Modifier.fillMaxSize()
-                ){
+                    verticalArrangement = Arrangement.Center)
+                 {
                     Image(
                         painter = painterResource(R.drawable.info),
                         contentDescription = null,
