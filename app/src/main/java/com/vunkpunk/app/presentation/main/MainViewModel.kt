@@ -26,7 +26,7 @@ class MainViewModel @Inject constructor(
 
     init {
         val text = savedStateHandle.get<String>(Constants.PARAM_SEARCH)
-        if (text == null || text == "{paramSearch}") {
+        if (text == null || text == "") {
             getCards()
         } else { searchCards(text) }
     }
