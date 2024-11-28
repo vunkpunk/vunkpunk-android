@@ -6,6 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vunkpunk.app.common.Constants
+import com.vunkpunk.app.common.Constants.PARAM_SEARCH
 import com.vunkpunk.app.common.Resource
 import com.vunkpunk.app.domain.use_case.getCards.GetCardsBySearch
 import com.vunkpunk.app.domain.use_case.getCards.GetCardsMiniUseCase
@@ -26,7 +27,7 @@ class MainViewModel @Inject constructor(
 
     init {
         val text = savedStateHandle.get<String>(Constants.PARAM_SEARCH)
-        if (text == null || text == "") {
+        if (text == null || text == "" || text == "{$PARAM_SEARCH}") {
             getCards()
         } else { searchCards(text) }
     }
