@@ -58,7 +58,7 @@ fun CardMini(card: CardMini, navController: NavController) {
                     )
                     Spacer(modifier = Modifier.size(130.dp, 10.dp))
                     Text(
-                        "НУЖНА ОБЩАГА",
+                        "${card.dormitory} Общежитие",
                         modifier = Modifier.size(130.dp, 30.dp),
                         color = GeneralTextColor
                     )

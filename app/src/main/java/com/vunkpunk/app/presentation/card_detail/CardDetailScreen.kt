@@ -147,7 +147,7 @@ fun Content(navController: NavController, viewModel: CardDetailViewModel, paddin
                             .padding(10.dp)
                     ) {
                         Text(card.description)
-                        Text("Контакт: НУЖУЕН КОНТАКТ")
+                        Text("Контакт: ${card.contact}")
                     }
                 }
 

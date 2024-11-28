@@ -13,7 +13,8 @@ data class CardDto(
     val price: String,
     val rating: Double,
     val title: String,
-    val user: Int
+    val user: Int,
+    val contact: String
 )
 
 
@@ -28,6 +29,7 @@ fun CardDto.toCardDetail(): CardDetail {
         rating = rating,
         title = title,
         user = user,
+        contact = contact
     )
 }
 

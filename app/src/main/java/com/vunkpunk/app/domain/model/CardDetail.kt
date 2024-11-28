@@ -9,5 +9,6 @@ data class CardDetail(
     val price: String,
     val rating: Double,
     val title: String,
-    val user: Int
+    val user: Int,
+    val contact: String
 )

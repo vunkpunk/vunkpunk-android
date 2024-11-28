@@ -7,7 +7,7 @@ object Constants {
 
     const val PARAM_USER_ID = "userId"
 
-    const val USER_ID = "1"
+    const val USER_ID = "3"
 
     const val PARAM_CARD_ID = "cardId"
 
