@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
     id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -73,11 +74,25 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation(libs.io.coil.svg)
+    implementation(libs.io.coil.compose)
+
     // Dagger
     implementation(libs.com.google.dagger)
     kapt(libs.com.google.dagger.compiler)
 
     // Hilt
     implementation(libs.com.google.hilt)
+//    implementation(libs.androidx.hilt.lifecycle.viewmodel)
+    implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.com.google.hilt.compiler)
+
+    // Retrofit
+    implementation(libs.com.squareup.retrofit2)
+    implementation(libs.com.squareup.retrofit2.converter.gson)
+//    implementation(libs.com.squareup.retrofit2.adapter.rxjava2)
+
+    // Ktor
+    implementation(libs.io.ktor.ktor.client.core)
+    implementation(libs.io.ktor.ktor.client.cio)
 }
