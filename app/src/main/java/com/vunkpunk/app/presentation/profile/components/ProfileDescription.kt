@@ -90,7 +90,7 @@ fun ProfileDescription(user: User) {
                     .fillMaxWidth()
                     .height(30.dp),
                     verticalAlignment = Alignment.CenterVertically) {
-                    Text(text = "О себе", fontSize = 20.sp, color = GeneralTextColor)
+                    Text(text = "О себе:", fontSize = 20.sp, color = GeneralTextColor)
                 }
             }
             Text(text = user.description,

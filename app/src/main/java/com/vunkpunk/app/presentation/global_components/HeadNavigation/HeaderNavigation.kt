@@ -2,6 +2,7 @@ package com.vunkpunk.app.presentation.global_components.HeadNavigation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -25,14 +26,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.vunkpunk.app.R
+import com.vunkpunk.app.presentation.Screen
 import com.vunkpunk.app.presentation.theme.GeneralBackgroundColor
 import com.vunkpunk.app.presentation.theme.GeneralColor
 
-@Preview(showBackground = true)
+
 @Composable
-fun HeaderNavigation() {
-    var text by remember { mutableStateOf("Поиск") }
+fun HeaderNavigation(navController: NavController) {
     Box(modifier = Modifier.background(color = GeneralColor)) {
         Row(modifier = Modifier
             .fillMaxWidth()
@@ -43,11 +45,12 @@ fun HeaderNavigation() {
             // Avatar
             Image(modifier = Modifier
                 .size(40.dp)
-                .clip(CircleShape),
+                .clip(CircleShape)
+                .clickable { navController.navigate(Screen.ProfileScreen.route) },
                 painter = painterResource(id = R.drawable.profile_avatar),
                 contentDescription = "")
 
-            SearchBar()
+            SearchBar(navController)
         }
     }
 }

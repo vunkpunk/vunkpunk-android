@@ -31,6 +31,8 @@ import com.vunkpunk.app.presentation.global_components.BottomNavigation
 import com.vunkpunk.app.presentation.global_components.HeadNavigation.HeaderNavigation
 import com.vunkpunk.app.presentation.main.MainViewModel
 import com.vunkpunk.app.presentation.profile.ProfileViewModel
+import com.vunkpunk.app.presentation.theme.GeneralBackgroundColor
+import com.vunkpunk.app.presentation.theme.MinorBackgroundColor
 
 @Composable
 fun CardDetailScreen(
@@ -40,7 +42,7 @@ fun CardDetailScreen(
 
     Scaffold(
         topBar = {
-            HeaderNavigation()
+            HeaderNavigation(navController)
         },
         bottomBar = {
             BottomNavigation(navController)
@@ -141,7 +143,7 @@ fun Content(navController: NavController, viewModel: CardDetailViewModel, paddin
                         verticalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier
                             .width(360.dp)
                             .wrapContentHeight()
-                            .background(color = Color.Red)
+                            .background(color = MinorBackgroundColor)
                             .padding(10.dp)
                     ) {
                         Text(card.description)

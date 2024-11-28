@@ -19,4 +19,11 @@ class CardRepositoryImpl @Inject constructor(
         return api.getCardById(cardId)
     }
 
+    override suspend fun getCardsByUserId(userId: String): List<CardDto> {
+        return api.getCardsByUserId(userId)
+    }
+
+    override suspend fun getCardsBySearch(searchText: String): List<CardDto> {
+        return api.getCardsBySearch(searchText)
+    }
 }
