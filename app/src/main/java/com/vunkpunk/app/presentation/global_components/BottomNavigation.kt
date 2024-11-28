@@ -69,7 +69,8 @@ fun BottomNavigation(navController: NavController) {
                 .weight(0.2f)
                 .background(GeneralBackgroundColor)
                 .clickable { navController.navigate(Screen.AboutScreen.route) }) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally,
+                Column(modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center)
                  {
                     Image(
