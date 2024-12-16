@@ -1,4 +1,4 @@
-package com.vunkpunk.app.ui.theme
+package com.vunkpunk.app.presentation.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
