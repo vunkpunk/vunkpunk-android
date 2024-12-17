@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.vunkpunk.app.common.Constants
 import com.vunkpunk.app.common.Resource
 import com.vunkpunk.app.domain.use_case.getCards.GetCardDetailUseCase
-import com.vunkpunk.app.presentation.main.MainState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

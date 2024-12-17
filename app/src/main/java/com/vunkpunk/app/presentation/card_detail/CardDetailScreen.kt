@@ -24,14 +24,9 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.vunkpunk.app.R
-import com.vunkpunk.app.domain.model.CardDetail
-import com.vunkpunk.app.domain.model.CardMini
 import com.vunkpunk.app.presentation.card_detail.components.Comment
 import com.vunkpunk.app.presentation.global_components.BottomNavigation
 import com.vunkpunk.app.presentation.global_components.HeadNavigation.HeaderNavigation
-import com.vunkpunk.app.presentation.main.MainViewModel
-import com.vunkpunk.app.presentation.profile.ProfileViewModel
-import com.vunkpunk.app.presentation.theme.GeneralBackgroundColor
 import com.vunkpunk.app.presentation.theme.MinorBackgroundColor
 
 @Composable

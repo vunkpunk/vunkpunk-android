@@ -89,7 +89,7 @@ fun BottomNavigation(navController: NavController) {
                 .fillMaxHeight()
                 .weight(0.2f)
                 .background(GeneralBackgroundColor)
-                .clickable { }) {
+                .clickable { navController.navigate(Screen.PostCardScreen.route)}) {
                 Image(
                     painter = painterResource(R.drawable.plus),
                     contentDescription = null,
