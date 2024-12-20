@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">app</string>
+    <string name="capital_app">VUNKPUNK</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="create_account">Create account</string>
+    <string name="with_st_mail">with st mail</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="log_in">Log In</string>
+    <string name="st_mail">Student mail</string>
+    <string name="password">Password</string>
+    <string name="password_verification">Repeat Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
 </resources>
