@@ -14,6 +14,7 @@ import com.vunkpunk.app.presentation.main.MainScreen
 import com.vunkpunk.app.presentation.profile.ProfileScreen
 import com.vunkpunk.app.presentation.about.AboutScreen
 import com.vunkpunk.app.presentation.create_card.PostCardScreen
+import com.vunkpunk.app.presentation.login_system.LoginSystemScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,7 +26,8 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = Screen.MainScreen.route + "/{$PARAM_SEARCH}"
+                    startDestination = Screen.LoginSystem.route
+                    // startDestination = Screen.MainScreen.route + "/{$PARAM_SEARCH}"
                 ) {
                     composable(
                         route = Screen.MainScreen.route + "/{$PARAM_SEARCH}"
@@ -51,6 +53,11 @@ class MainActivity : ComponentActivity() {
                         route = Screen.AboutScreen.route,
                     ) {
                         AboutScreen(navController)
+                    }
+                    composable(
+                        route = Screen.LoginSystem.route,
+                    ) {
+                        LoginSystemScreen()
                     }
                 }
             }

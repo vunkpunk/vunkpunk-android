@@ -5,6 +5,7 @@ import com.vunkpunk.app.common.Constants.PARAM_SEARCH
 
 sealed class Screen(val route: String) {
     object TestScreen : Screen("test_screen")
+    object LoginSystem : Screen("login")
     object MainScreen : Screen("main_screen/{$PARAM_SEARCH}")
     object PostCardScreen : Screen("post_card_screen")
     object ProfileScreen : Screen("profile_screen")
