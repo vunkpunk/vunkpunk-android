@@ -6,12 +6,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -30,8 +32,9 @@ fun Header(user: User) {
     {
 
         Image(
-            modifier = Modifier.clip(CircleShape),
-            painter = painterResource(id = R.drawable.profile_avatar),
+            bitmap = user.photo.asImageBitmap(),
+            modifier = Modifier.clip(CircleShape)
+                .size(100.dp),
             contentDescription = "Artist image"
         )
 

@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -36,7 +37,7 @@ fun CardMini(card: CardMini, navController: NavController) {
         Column {
 
             Image(
-                painter = painterResource(R.drawable.ic_launcher_background),
+                bitmap = card.photo.asImageBitmap(),
                 contentDescription = null,
                 modifier = Modifier
                     .size(150.dp)

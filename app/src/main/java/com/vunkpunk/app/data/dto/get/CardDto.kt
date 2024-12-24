@@ -1,5 +1,6 @@
-package com.vunkpunk.app.data.dto.get
+package com.vunkpunk.app.data.dto
 
+import android.graphics.Bitmap
 import com.vunkpunk.app.domain.model.CardDetail
 import com.vunkpunk.app.domain.model.CardMini
 
@@ -9,7 +10,7 @@ data class CardDto(
     val dormitory: String,
     val id: Int,
     val is_published: Boolean,
-    val photo: String?,
+    val uploaded_images: List<PhotoDto>,
     val price: String,
     val rating: Double,
     val title: String,
@@ -18,22 +19,22 @@ data class CardDto(
 )
 
 
-fun CardDto.toCardDetail(): CardDetail {
+fun CardDto.toCardDetail(photos: List<Bitmap>): CardDetail {
     return CardDetail(
         description = description,
         dormitory = dormitory,
         id = id,
         is_published = is_published,
-        photo = photo,
         price = price,
         rating = rating,
         title = title,
         user = user,
-        contact = contact
+        contact = contact,
+        photos = photos
     )
 }
 
-fun CardDto.toCardMini(): CardMini {
+fun CardDto.toCardMini(photo: Bitmap): CardMini {
     return CardMini(
         id = id,
         is_published = is_published,
@@ -42,5 +43,6 @@ fun CardDto.toCardMini(): CardMini {
         rating = rating,
         title = title,
         user = user,
+        photo = photo
     )
 }

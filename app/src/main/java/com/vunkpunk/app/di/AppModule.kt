@@ -3,12 +3,16 @@ package com.vunkpunk.app.di
 import com.google.gson.Gson
 import com.vunkpunk.app.common.Token.TOKEN
 import com.vunkpunk.app.data.Api.CardApi
+import com.vunkpunk.app.data.Api.PhotoApi
 import com.vunkpunk.app.data.Api.UserApi
 import com.vunkpunk.app.data.ApiImpl.CardApiImpl
+import com.vunkpunk.app.data.ApiImpl.PhotoApiImpl
 import com.vunkpunk.app.data.ApiImpl.UserApiImpl
 import com.vunkpunk.app.data.repository.CardRepositoryImpl
+import com.vunkpunk.app.data.repository.PhotoRepositoryImpl
 import com.vunkpunk.app.data.repository.UserRepositoryImpl
 import com.vunkpunk.app.domain.repository.CardRepository
+import com.vunkpunk.app.domain.repository.PhotoRepository
 import com.vunkpunk.app.domain.repository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -40,6 +44,12 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun providePhotoApi(client: HttpClient, gson: Gson): PhotoApi {
+        return PhotoApiImpl(client, gson)
+    }
+
+    @Provides
+    @Singleton
     fun provideKtorClient(): HttpClient {
         return HttpClient(CIO)
     }
@@ -59,5 +69,11 @@ object AppModule {
     @Singleton
     fun provideCardRepository(api: CardApi): CardRepository {
         return CardRepositoryImpl(api)
+    }
+
+    @Provides
+    @Singleton
+    fun providePhotoRepository(api: PhotoApi): PhotoRepository {
+        return PhotoRepositoryImpl(api)
     }
 }

@@ -1,8 +1,11 @@
 package com.vunkpunk.app.presentation
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.compose.material3.Surface
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.NavHost
@@ -16,7 +19,8 @@ import com.vunkpunk.app.presentation.card_detail.CardDetailScreen
 import com.vunkpunk.app.presentation.main.MainScreen
 import com.vunkpunk.app.presentation.profile.ProfileScreen
 import com.vunkpunk.app.presentation.about.AboutScreen
-import com.vunkpunk.app.presentation.create_card.PostCardScreen
+import com.vunkpunk.app.presentation.post_card.PostCardScreen
+import com.vunkpunk.app.presentation.post_card.PostCardViewModel
 import com.vunkpunk.app.presentation.login_system.code.CodeScreen
 import com.vunkpunk.app.presentation.login_system.login.LoginScreen
 import com.vunkpunk.app.presentation.login_system.sign_up.SignUpScreen
@@ -25,6 +29,15 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    val postCardViewModel: PostCardViewModel by viewModels()
+
+    var getImagesLauncher = registerForActivityResult(
+        ActivityResultContracts.GetMultipleContents()
+    ) { uris: List<Uri> ->
+        postCardViewModel.onEvent(PostCardViewModel.UiEvent.AddImages(uris))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         var start = Screen.SearchScreen.route + "/{$PARAM_SEARCH}"
         if (TOKEN.value == ""){
@@ -33,6 +46,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         window.statusBarColor = android.graphics.Color.TRANSPARENT
+
         setContent {
             Surface() {
                 val navController = rememberNavController()
@@ -53,7 +67,7 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = Screen.PostCardScreen.route,
                     ) {
-                        PostCardScreen(navController)
+                        PostCardScreen(navController, postCardViewModel) {openGallery()}
                     }
                     composable(
                         route = Screen.ProfileScreen.route
@@ -93,5 +107,9 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun openGallery() {
+        getImagesLauncher.launch("image/*")
     }
 }
