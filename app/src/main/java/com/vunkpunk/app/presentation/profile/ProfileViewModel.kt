@@ -4,8 +4,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vunkpunk.app.common.Constants.USER_ID
 import com.vunkpunk.app.common.Resource
+import com.vunkpunk.app.common.Token.ID
 import com.vunkpunk.app.domain.model.CardMini
 import com.vunkpunk.app.domain.use_case.getCards.GetCardsMiniFromUserUseCase
 import com.vunkpunk.app.domain.use_case.getCards.GetCardsMiniUseCase
@@ -32,9 +32,9 @@ class ProfileViewModel @Inject constructor(
     val unpublishedCards: State<MainState> = _unpublishedCards
 
     init {
-        getUser(USER_ID)
-        getPublishedCardsMiniFromUser(USER_ID)
-        getUnpublishedCardsMiniFromUser(USER_ID)
+        getUser(ID.value)
+        getPublishedCardsMiniFromUser(ID.value)
+        getUnpublishedCardsMiniFromUser(ID.value)
     }
 
     private fun getUser(userId: String) {

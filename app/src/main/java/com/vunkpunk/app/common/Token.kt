@@ -4,4 +4,5 @@ import androidx.compose.runtime.mutableStateOf
 
 object Token {
         var TOKEN = mutableStateOf("")
+        var ID = mutableStateOf("")
 }

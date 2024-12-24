@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         var start = Screen.SearchScreen.route + "/{$PARAM_SEARCH}"
-        if (TOKEN.value == ""){
+        if (TOKEN.value == "") {
             start = Screen.WelcomeScreen.route
         }
         super.onCreate(savedInstanceState)
@@ -67,7 +67,7 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = Screen.PostCardScreen.route,
                     ) {
-                        PostCardScreen(navController, postCardViewModel) {openGallery()}
+                        PostCardScreen(navController, postCardViewModel) { openGallery() }
                     }
                     composable(
                         route = Screen.ProfileScreen.route

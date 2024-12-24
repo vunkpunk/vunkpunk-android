@@ -1,5 +1,6 @@
 package com.vunkpunk.app.data.ApiImpl
 
+import android.util.Log
 import com.google.gson.Gson
 import com.vunkpunk.app.common.Constants.BASE_URL
 import com.vunkpunk.app.common.ErrorConstants.LOGIN_ERROR
@@ -7,9 +8,9 @@ import com.vunkpunk.app.data.Api.LoginUserApi
 import com.vunkpunk.app.data.dto.post.LogInUserDto
 import com.vunkpunk.app.data.dto.post.SendCodeDto
 import com.vunkpunk.app.data.dto.post.SignUpUserDto
+import com.vunkpunk.app.data.dto.response.LogInUserDtoResponseDto
 import com.vunkpunk.app.data.dto.response.SignUpUserResponseFailDto
 import com.vunkpunk.app.data.dto.response.LogInUserDtoResponseFailDto
-import com.vunkpunk.app.data.dto.response.LogInUserDtoResponseSuccessDto
 import io.ktor.client.HttpClient
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
@@ -47,23 +48,17 @@ class LoginUserApiImpl @Inject constructor(
         return ""
     }
 
-    override suspend fun logInUser(logInUser: LogInUserDto): String {
+    override suspend fun logInUser(logInUser: LogInUserDto): LogInUserDtoResponseDto {
         val codeJson = gson.toJson(logInUser)
-        val responseJson = client.post("$BASE_URL/auth/token/login") {
+        val responseJson = client.post("$BASE_URL/auth/token/login/") {
             contentType(ContentType.Application.Json)
             setBody(codeJson)
         }
-        if (responseJson.status.value == 400) {
-            val response =
-                gson.fromJson(responseJson.bodyAsText(), LogInUserDtoResponseFailDto::class.java)
-                    ?: LogInUserDtoResponseFailDto()
-            return LOGIN_ERROR //TODO remove hardcode error
-        } else {
-            val response =
-                gson.fromJson(responseJson.bodyAsText(), LogInUserDtoResponseSuccessDto::class.java)
-                    ?: LogInUserDtoResponseSuccessDto()
-            return response.auth_token
-        }
+        val response =
+            gson.fromJson(responseJson.bodyAsText(), LogInUserDtoResponseDto::class.java)
+                ?: LogInUserDtoResponseDto()
+        Log.d("RESPONSE", response.toString())
+        return response
     }
 
     override suspend fun sendCode(userCode: SendCodeDto): Boolean {
