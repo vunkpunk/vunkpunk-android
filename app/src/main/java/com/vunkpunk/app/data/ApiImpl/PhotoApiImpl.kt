@@ -23,4 +23,11 @@ class PhotoApiImpl @Inject constructor(
         }
         return resp.bodyAsBytes()
     }
+
+    override suspend fun getUserPhotoById(userId: String): ByteArray {
+        val resp = client.get("$BASE_URL/image/user/$userId") {
+            header("Authorization", "Token $TOKEN")
+        }
+        return resp.bodyAsBytes()
+    }
 }

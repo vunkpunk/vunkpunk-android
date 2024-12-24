@@ -15,4 +15,9 @@ class PhotoRepositoryImpl @Inject constructor(
         val byteArray = api.getCardPhotoById(photoId)
         return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
     }
+
+    override suspend fun getUserPhotoById(userId: String): Bitmap {
+        val byteArray = api.getUserPhotoById(userId)
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+    }
 }

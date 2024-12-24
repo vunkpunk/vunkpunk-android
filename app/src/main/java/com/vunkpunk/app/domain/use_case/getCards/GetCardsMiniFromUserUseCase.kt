@@ -16,10 +16,10 @@ class GetCardsMiniFromUserUseCase @Inject constructor(
     private val cardRepository: CardRepository,
     private val photoRepository: PhotoRepository
 ) {
-    operator fun invoke(userId: String): Flow<Resource<List<CardMini>>> = flow {
+    operator fun invoke(userId: String, published: Boolean): Flow<Resource<List<CardMini>>> = flow {
         try {
             emit(Resource.Loading<List<CardMini>>())
-            val cardsDto = cardRepository.getCardsByUserId(userId)
+            val cardsDto = cardRepository.getCardsByUserId(userId, published)
             Log.d("GetCardsMiniFromUserUseCase", cardsDto.toString())
             val cardsMini =
                 cardsDto.map { it.toCardMini(photoRepository.getCardPhotoById(it.uploaded_images[0].id.toString())) }

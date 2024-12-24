@@ -53,7 +53,8 @@ fun ProfileScreen(
 @Composable
 fun Content(navController: NavController, viewModel: ProfileViewModel, padding: PaddingValues) {
     val user = viewModel.user.value
-    val allCards: List<CardMini> = viewModel.cards.value.cardsMini
+    val publishedCards: List<CardMini> = viewModel.publishedCards.value.cardsMini
+    val unpublishedCards: List<CardMini> = viewModel.unpublishedCards.value.cardsMini
 
     if(user.user == null){
         Box(modifier = Modifier.fillMaxSize()) {
@@ -84,7 +85,7 @@ fun Content(navController: NavController, viewModel: ProfileViewModel, padding: 
                 }
 
                 item {
-                    ListOfMiniCards(cards = allCards, navController = navController)
+                    ListOfMiniCards(cards = publishedCards, navController = navController)
                 }
 
                 item {
@@ -94,7 +95,7 @@ fun Content(navController: NavController, viewModel: ProfileViewModel, padding: 
                 }
 
                 item {
-                    ListOfMiniCards(cards = allCards, navController = navController)
+                    ListOfMiniCards(cards = unpublishedCards, navController = navController)
                 }
             }
         }
