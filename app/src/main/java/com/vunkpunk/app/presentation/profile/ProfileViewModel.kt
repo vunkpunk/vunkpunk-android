@@ -25,12 +25,16 @@ class ProfileViewModel @Inject constructor(
     private val _user = mutableStateOf(ProfileState())
     val user: State<ProfileState> = _user
 
-    private val _cards = mutableStateOf(MainState())
-    val cards: State<MainState> = _cards
+    private val _publishedCards = mutableStateOf(MainState())
+    val publishedCards: State<MainState> = _publishedCards
+
+    private val _unpublishedCards = mutableStateOf(MainState())
+    val unpublishedCards: State<MainState> = _unpublishedCards
 
     init {
         getUser(USER_ID)
-        getCardsMiniFromUser(USER_ID)
+        getPublishedCardsMiniFromUser(USER_ID)
+        getUnpublishedCardsMiniFromUser(USER_ID)
     }
 
     private fun getUser(userId: String) {
@@ -53,21 +57,41 @@ class ProfileViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    private fun getCardsMiniFromUser(userId: String) {
-        getCardsMiniFromUserUseCase(userId).onEach { result ->
+    private fun getPublishedCardsMiniFromUser(userId: String) {
+        getCardsMiniFromUserUseCase(userId, true).onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _cards.value = MainState(cardsMini = result.data ?: emptyList<CardMini>())
+                    _publishedCards.value = MainState(cardsMini = result.data ?: emptyList<CardMini>())
                 }
 
                 is Resource.Error -> {
-                    _cards.value = MainState(
+                    _publishedCards.value = MainState(
                         error = result.message ?: "An unexpected error occured"
                     )
                 }
 
                 is Resource.Loading -> {
-                    _cards.value = MainState(isLoading = true)
+                    _publishedCards.value = MainState(isLoading = true)
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    private fun getUnpublishedCardsMiniFromUser(userId: String) {
+        getCardsMiniFromUserUseCase(userId, false).onEach { result ->
+            when (result) {
+                is Resource.Success -> {
+                    _unpublishedCards.value = MainState(cardsMini = result.data ?: emptyList<CardMini>())
+                }
+
+                is Resource.Error -> {
+                    _unpublishedCards.value = MainState(
+                        error = result.message ?: "An unexpected error occured"
+                    )
+                }
+
+                is Resource.Loading -> {
+                    _unpublishedCards.value = MainState(isLoading = true)
                 }
             }
         }.launchIn(viewModelScope)

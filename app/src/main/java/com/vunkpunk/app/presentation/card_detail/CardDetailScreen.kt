@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -93,7 +94,7 @@ fun Content(navController: NavController, viewModel: CardDetailViewModel, paddin
                                 .size(360.dp, 250.dp)
                         ) {
                             Image(
-                                painter = painterResource(R.drawable.ic_launcher_background),
+                                bitmap = card.photos[0].asImageBitmap(),
                                 contentDescription = null,
                                 modifier = Modifier
                                     .fillMaxSize()
@@ -111,13 +112,14 @@ fun Content(navController: NavController, viewModel: CardDetailViewModel, paddin
                                 .size(360.dp, 50.dp),
                             horizontalArrangement = Arrangement.spacedBy(30.dp),
                         ) {
-                            items(20) {
+                            item {card.photos.forEachIndexed { index, bitmap ->
                                 Image(
-                                    painter = painterResource(R.drawable.ic_launcher_background),
+                                    bitmap = bitmap.asImageBitmap(),
                                     contentDescription = null,
                                     modifier = Modifier
                                         .size(50.dp)
                                 )
+                            }
                             }
                         }
                     }
