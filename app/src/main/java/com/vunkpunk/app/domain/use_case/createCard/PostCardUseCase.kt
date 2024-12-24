@@ -11,12 +11,13 @@ import javax.inject.Inject
 
 class PostCardUseCase @Inject constructor(
     private val repository: CardRepository
+
 ){
-    operator fun invoke(title: String, price: String, description: String): Flow<Resource<PostCardDto>> = flow{
+    operator fun invoke(title: String, price: String, description: String, images: List<ByteArray>): Flow<Resource<PostCardDto>> = flow{
         try {
             emit(Resource.Loading<PostCardDto>())
             val postCardDto = PostCardDto(title, price, description, true)
-            repository.postCard(postCardDto)
+            repository.postCard(postCardDto, images)
             emit(Resource.Success<PostCardDto>(postCardDto))
         } catch (e: HttpException) {
             emit(

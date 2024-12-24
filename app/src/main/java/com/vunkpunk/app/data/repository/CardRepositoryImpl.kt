@@ -28,7 +28,7 @@ class CardRepositoryImpl @Inject constructor(
         return api.getCardsBySearch(searchText)
     }
 
-    override suspend fun postCard(postCardDto: PostCardDto): Unit {
-        api.postCard(postCardDto)
+    override suspend fun postCard(postCardDto: PostCardDto, images: List<ByteArray>): Unit {
+        api.postCard(postCardDto, images)
     }
 }
