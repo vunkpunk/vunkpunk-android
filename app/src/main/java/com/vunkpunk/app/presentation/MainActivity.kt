@@ -16,8 +16,8 @@ import com.vunkpunk.app.presentation.card_detail.CardDetailScreen
 import com.vunkpunk.app.presentation.main.MainScreen
 import com.vunkpunk.app.presentation.profile.ProfileScreen
 import com.vunkpunk.app.presentation.about.AboutScreen
-import com.vunkpunk.app.presentation.create_card.PostCardScreen
-import com.vunkpunk.app.presentation.create_card.PostCardViewModel
+import com.vunkpunk.app.presentation.post_card.PostCardScreen
+import com.vunkpunk.app.presentation.post_card.PostCardViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

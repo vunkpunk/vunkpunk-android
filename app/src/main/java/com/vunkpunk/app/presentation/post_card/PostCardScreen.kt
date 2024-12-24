@@ -1,4 +1,4 @@
-package com.vunkpunk.app.presentation.create_card
+package com.vunkpunk.app.presentation.post_card
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

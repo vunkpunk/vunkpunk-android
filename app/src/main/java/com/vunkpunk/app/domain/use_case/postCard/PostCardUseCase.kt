@@ -1,4 +1,4 @@
-package com.vunkpunk.app.domain.use_case.createCard
+package com.vunkpunk.app.domain.use_case.postCard
 
 import com.vunkpunk.app.common.Resource
 import com.vunkpunk.app.data.dto.PostCardDto

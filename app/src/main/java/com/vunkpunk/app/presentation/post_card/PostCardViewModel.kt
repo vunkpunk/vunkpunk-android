@@ -1,4 +1,4 @@
-package com.vunkpunk.app.presentation.create_card
+package com.vunkpunk.app.presentation.post_card
 
 import android.content.Context
 import android.graphics.BitmapFactory
@@ -9,7 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vunkpunk.app.common.Resource
-import com.vunkpunk.app.domain.use_case.createCard.PostCardUseCase
+import com.vunkpunk.app.domain.use_case.postCard.PostCardUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
