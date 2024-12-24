@@ -1,9 +1,8 @@
 package com.vunkpunk.app.domain.use_case.signUpUser
 
-import android.util.Log
 import com.vunkpunk.app.common.Resource
 import com.vunkpunk.app.data.dto.post.SignUpUserDto
-import com.vunkpunk.app.domain.repository.UserRepository
+import com.vunkpunk.app.domain.repository.LoginUserRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -11,7 +10,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 class SignUpUserUseCase @Inject constructor(
-    private val repository: UserRepository,
+    private val repository: LoginUserRepository,
 ) {
     operator fun invoke(signUpUser: SignUpUserDto): Flow<Resource<String>> = flow {
         try {

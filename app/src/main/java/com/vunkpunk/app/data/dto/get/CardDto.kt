@@ -1,6 +1,7 @@
-package com.vunkpunk.app.data.dto
+package com.vunkpunk.app.data.dto.get
 
 import android.graphics.Bitmap
+import com.vunkpunk.app.data.dto.PhotoDto
 import com.vunkpunk.app.domain.model.CardDetail
 import com.vunkpunk.app.domain.model.CardMini
 

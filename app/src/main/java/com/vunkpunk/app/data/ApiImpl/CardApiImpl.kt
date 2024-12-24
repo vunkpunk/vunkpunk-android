@@ -38,7 +38,6 @@ class CardApiImpl @Inject constructor(
             header("Authorization", "Token ${token}")
         }
         val card = gson.fromJson(resp.bodyAsText(), CardDto::class.java)
-        Log.d("CardApiImpl", card.toString())
         return card
     }
 

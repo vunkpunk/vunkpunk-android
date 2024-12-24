@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         var start = Screen.SearchScreen.route + "/{$PARAM_SEARCH}"
-        if (TOKEN.value == ""){
+        if (TOKEN.value == "o"){
             start = Screen.WelcomeScreen.route
         }
         super.onCreate(savedInstanceState)

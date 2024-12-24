@@ -9,7 +9,7 @@ data class UserDto(
     val first_name: String,
     val last_name: String,
     val username: String,
-    val photo: String,
+    val photo: String?,
     val faculty: String,
     val dormitory: String
 )
