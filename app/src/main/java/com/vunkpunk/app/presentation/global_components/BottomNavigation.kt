@@ -45,7 +45,7 @@ fun BottomNavigation(navController: NavController) {
                 .fillMaxHeight()
                 .weight(0.2f)
                 .background(GeneralBackgroundColor)
-                .clickable { navController.navigate(Screen.MainScreen.route + "/{$PARAM_SEARCH}") }
+                .clickable { navController.navigate(Screen.SearchScreen.route + "/{$PARAM_SEARCH}") }
                 )
             {
                 Column(horizontalAlignment = Alignment.CenterHorizontally,

@@ -1,14 +1,10 @@
 package com.vunkpunk.app.data.ApiImpl
 
-import android.icu.text.CaseMap.Title
-import android.util.Log
 import com.google.gson.Gson
 import com.vunkpunk.app.common.Constants.BASE_URL
-import com.vunkpunk.app.common.Token.TOKEN
 import com.vunkpunk.app.data.Api.CardApi
-import com.vunkpunk.app.data.Api.UserApi
-import com.vunkpunk.app.data.dto.CardDto
-import com.vunkpunk.app.data.dto.PostCardDto
+import com.vunkpunk.app.data.dto.get.CardDto
+import com.vunkpunk.app.data.dto.post.PostCardDto
 import io.ktor.client.HttpClient
 import io.ktor.client.request.forms.formData
 import io.ktor.client.request.forms.submitFormWithBinaryData
@@ -25,12 +21,13 @@ import javax.inject.Inject
 
 class CardApiImpl @Inject constructor(
     private val client: HttpClient,
-    private val gson: Gson
+    private val gson: Gson,
+    private val token: String
 ) : CardApi {
 
     override suspend fun getCards(): List<CardDto> {
         val resp = client.get("$BASE_URL/sales") {
-            header("Authorization", "Token ${TOKEN}")
+            header("Authorization", "Token ${token}")
         }
         val cards = gson.fromJson(resp.bodyAsText(), Array<CardDto>::class.java).asList()
         return cards
@@ -38,16 +35,15 @@ class CardApiImpl @Inject constructor(
 
     override suspend fun getCardById(cardId: String): CardDto {
         val resp = client.get("$BASE_URL/sales/$cardId") {
-            header("Authorization", "Token ${TOKEN}")
+            header("Authorization", "Token ${token}")
         }
         val card = gson.fromJson(resp.bodyAsText(), CardDto::class.java)
-        Log.d("CardApiImpl", card.toString())
         return card
     }
 
     override suspend fun getCardsByUserId(userId: String, published: Boolean): List<CardDto> {
         val resp = client.get("$BASE_URL/sales/?all=$published&user_id=$userId") {
-            header("Authorization", "Token ${TOKEN}")
+            header("Authorization", "Token ${token}")
         }
         val cards = gson.fromJson(resp.bodyAsText(), Array<CardDto>::class.java).asList()
         return cards
@@ -55,7 +51,7 @@ class CardApiImpl @Inject constructor(
 
     override suspend fun getCardsBySearch(paramSearch: String): List<CardDto> {
         val resp = client.get("$BASE_URL/sales/?search=$paramSearch") {
-            header("Authorization", "Token ${TOKEN}")
+            header("Authorization", "Token ${token}")
         }
         val cards = gson.fromJson(resp.bodyAsText(), Array<CardDto>::class.java).asList()
         return cards
@@ -77,9 +73,8 @@ class CardApiImpl @Inject constructor(
         }
 
         val resp = client.submitFormWithBinaryData("$BASE_URL/sales/", formData) {
-            header("Authorization", "Token $TOKEN")
+            header("Authorization", "Token $token")
             header("Content-Type", "multipart/form-data")
         }
-        println(resp.bodyAsText())
     }
 }

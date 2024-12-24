@@ -12,4 +12,6 @@ object Constants {
     const val PARAM_CARD_ID = "cardId"
 
     const val PARAM_SEARCH = "search_request"
+
+    const val PARAM_EMAIL = "email"
 }

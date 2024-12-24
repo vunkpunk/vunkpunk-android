@@ -65,7 +65,7 @@ fun SearchBar(navController: NavController) {
         // BasicTextField
         BasicTextField(modifier = Modifier
             .clickable {
-                navController.navigate(Screen.MainScreen.route + "/${text}")
+                navController.navigate(Screen.SearchScreen.route + "/${text}")
             }
             .height(20.dp)
             .weight(1f),

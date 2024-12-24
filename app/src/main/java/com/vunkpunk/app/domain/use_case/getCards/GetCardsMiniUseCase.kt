@@ -2,10 +2,8 @@ package com.vunkpunk.app.domain.use_case.getCards
 
 import android.util.Log
 import com.vunkpunk.app.common.Resource
-import com.vunkpunk.app.data.dto.toCardMini
-import com.vunkpunk.app.data.dto.toUser
+import com.vunkpunk.app.data.dto.get.toCardMini
 import com.vunkpunk.app.domain.model.CardMini
-import com.vunkpunk.app.domain.model.User
 import com.vunkpunk.app.domain.repository.CardRepository
 import com.vunkpunk.app.domain.repository.PhotoRepository
 import javax.inject.Inject

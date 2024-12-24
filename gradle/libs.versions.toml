@@ -15,6 +15,7 @@ hiltCompose = "1.2.0"
 hiltLifecycle = "1.0.0-alpha03"
 ktor = "3.0.1"
 coil = "2.3.0"
+media3CommonKtx = "1.5.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -53,6 +54,7 @@ com-squareup-retrofit2-adapter-rxjava2 = { group = "com.squareup.retrofit2", nam
 # Ktor
 io-ktor-ktor-client-cio = {group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor"}
 io-ktor-ktor-client-core = {group = "io.ktor", name = "ktor-client-core", version.ref = "ktor"}
+androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "media3CommonKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

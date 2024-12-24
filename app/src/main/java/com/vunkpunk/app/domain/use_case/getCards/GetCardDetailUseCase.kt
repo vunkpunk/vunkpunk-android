@@ -3,8 +3,7 @@ package com.vunkpunk.app.domain.use_case.getCards
 import android.util.Log
 import android.util.Printer
 import com.vunkpunk.app.common.Resource
-import com.vunkpunk.app.data.dto.toCardDetail
-import com.vunkpunk.app.data.dto.toCardMini
+import com.vunkpunk.app.data.dto.get.toCardDetail
 import com.vunkpunk.app.domain.model.CardDetail
 import com.vunkpunk.app.domain.model.CardMini
 import com.vunkpunk.app.domain.repository.CardRepository

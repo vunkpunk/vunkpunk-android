@@ -108,7 +108,7 @@ fun Content(
         Button(onClick = {
             viewModel.onEvent(PostCardViewModel.UiEvent.PostCard(context))
             viewModel.resetState()
-            navController.navigate(Screen.MainScreen.route +  "/{$PARAM_SEARCH}")
+            navController.navigate(Screen.SearchScreen.route +  "/{$PARAM_SEARCH}")
         }) {
         }
     }

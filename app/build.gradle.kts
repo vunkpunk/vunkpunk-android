@@ -95,4 +95,17 @@ dependencies {
     // Ktor
     implementation(libs.io.ktor.ktor.client.core)
     implementation(libs.io.ktor.ktor.client.cio)
+
+    // Page
+    implementation("androidx.compose.foundation:foundation:1.5.0")
+
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+    implementation("jp.wasabeef:glide-transformations:4.3.0")
+    kapt("com.github.bumptech.glide:compiler:4.15.1")
+
+    // Fonts
+    implementation("androidx.compose.ui:ui-text-google-fonts:1.5.0") // Проверьте последнюю версию!
+
+
 }

@@ -1,9 +1,10 @@
 package com.vunkpunk.domain.use_case.getUser
 
 import com.vunkpunk.app.common.Resource
-import com.vunkpunk.app.data.dto.toUser
+import com.vunkpunk.app.data.dto.get.toUser
 import com.vunkpunk.app.domain.model.User
 import com.vunkpunk.app.domain.repository.PhotoRepository
+import com.vunkpunk.app.domain.repository.LoginUserRepository
 import com.vunkpunk.app.domain.repository.UserRepository
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
