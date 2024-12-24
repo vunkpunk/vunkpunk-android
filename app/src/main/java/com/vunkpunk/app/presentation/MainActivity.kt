@@ -1,5 +1,6 @@
 package com.vunkpunk.app.presentation
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,7 +15,6 @@ import androidx.navigation.compose.rememberNavController
 import com.vunkpunk.app.common.Constants.PARAM_CARD_ID
 import com.vunkpunk.app.common.Constants.PARAM_EMAIL
 import com.vunkpunk.app.common.Constants.PARAM_SEARCH
-import com.vunkpunk.app.common.Token.TOKEN
 import com.vunkpunk.app.presentation.card_detail.CardDetailScreen
 import com.vunkpunk.app.presentation.main.MainScreen
 import com.vunkpunk.app.presentation.profile.ProfileScreen
@@ -29,9 +29,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
     val postCardViewModel: PostCardViewModel by viewModels()
-
     var getImagesLauncher = registerForActivityResult(
         ActivityResultContracts.GetMultipleContents()
     ) { uris: List<Uri> ->
@@ -39,8 +37,9 @@ class MainActivity : ComponentActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val sharedPreferences = getSharedPreferences("auth_prefs", Context.MODE_PRIVATE)
         var start = Screen.SearchScreen.route + "/{$PARAM_SEARCH}"
-        if (TOKEN.value == ""){
+        if (sharedPreferences.getString("auth_token", null) == null){
             start = Screen.WelcomeScreen.route
         }
         super.onCreate(savedInstanceState)

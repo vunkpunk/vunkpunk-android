@@ -1,9 +1,9 @@
 package com.vunkpunk.app.domain.use_case.logInUser
 
+import android.content.SharedPreferences
 import android.util.Log
 import com.vunkpunk.app.common.ErrorConstants.LOGIN_ERROR
 import com.vunkpunk.app.common.Resource
-import com.vunkpunk.app.common.Token.TOKEN
 import com.vunkpunk.app.data.dto.post.LogInUserDto
 import com.vunkpunk.app.domain.repository.LoginUserRepository
 import kotlinx.coroutines.flow.Flow
@@ -14,6 +14,7 @@ import javax.inject.Inject
 
 class LogInUserUseCase @Inject constructor(
     private val repository: LoginUserRepository,
+    private val sharedPreferences: SharedPreferences
 ) {
     operator fun invoke(logInUser: LogInUserDto): Flow<Resource<String>> = flow {
         try {
@@ -22,8 +23,7 @@ class LogInUserUseCase @Inject constructor(
             if (token == LOGIN_ERROR){
                 emit(Resource.Error(token))
             } else {
-                TOKEN.value = token
-                Log.d("TOKEN", TOKEN.value)
+                sharedPreferences.edit().putString("auth_token", token).apply()
                 emit(Resource.Success<String>(token))
             }
         } catch (e: HttpException) {

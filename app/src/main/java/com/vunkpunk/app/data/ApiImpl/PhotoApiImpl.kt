@@ -2,7 +2,6 @@ package com.vunkpunk.app.data.ApiImpl
 
 import com.google.gson.Gson
 import com.vunkpunk.app.common.Constants.BASE_URL
-import com.vunkpunk.app.common.Token.TOKEN
 import com.vunkpunk.app.data.Api.PhotoApi
 import com.vunkpunk.app.data.dto.get.CardDto
 import io.ktor.client.HttpClient

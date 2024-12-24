@@ -6,7 +6,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vunkpunk.app.common.Resource
-import com.vunkpunk.app.common.Token.TOKEN
 import com.vunkpunk.app.data.dto.post.LogInUserDto
 import com.vunkpunk.app.domain.use_case.logInUser.LogInUserUseCase
 import com.vunkpunk.app.presentation.login_system.LoginSystemEvent
