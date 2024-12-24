@@ -10,4 +10,20 @@
     <string name="password">Password</string>
     <string name="password_verification">Repeat Password</string>
     <string name="already_have_an_account">Already have an account?</string>
+    <string name="secret_code">The secret code</string>
+    <string name="was_sent_to">was sent to</string>
+    <string name="enter_code">Enter Code</string>
+    <string name="code_field_label">Code</string>
+    <string name="accept_code_button">Accept</string>
+    <string name="no_code_question">No Code?</string>
+    <string name="resend_code">Resend code</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="recover_password">Recover</string>
+    <string name="welcome_back">Welcome Back  </string>
+    <string name="email_error">Email must be stXXXXXX@student.spbu.ru, where X is number  </string>
+    <string name="not_same_password_error">Passwords don`t match </string>
+    <string name="password_length_error">Password length is at least 5</string>
+    <string name="password_space_error">There should be no spaces in the password</string>
+    <string name="password_digit_error">Password must contain numbers</string>
+    <string name="password_char_error">Password must contain letters</string>
 </resources>

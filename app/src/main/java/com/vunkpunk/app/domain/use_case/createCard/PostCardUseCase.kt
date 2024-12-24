@@ -1,7 +1,7 @@
 package com.vunkpunk.app.domain.use_case.createCard
 
 import com.vunkpunk.app.common.Resource
-import com.vunkpunk.app.data.dto.PostCardDto
+import com.vunkpunk.app.data.dto.post.PostCardDto
 import com.vunkpunk.app.domain.repository.CardRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

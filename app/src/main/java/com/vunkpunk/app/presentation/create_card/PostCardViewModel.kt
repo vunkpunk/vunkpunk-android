@@ -50,7 +50,7 @@ class PostCardViewModel @Inject constructor(
         _postCardState.value = _postCardState.value.copy(description = newDescription)
     }
 
-    fun createCard(title: String, price: String, description: String) {
+    private fun createCard(title: String, price: String, description: String) {
         postCardUseCase(title, price, description).onEach { result ->
             when (result) {
                 is Resource.Success -> {

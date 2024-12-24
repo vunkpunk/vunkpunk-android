@@ -1,7 +1,7 @@
 package com.vunkpunk.app.domain.repository
 
-import com.vunkpunk.app.data.dto.CardDto
-import com.vunkpunk.app.data.dto.PostCardDto
+import com.vunkpunk.app.data.dto.get.CardDto
+import com.vunkpunk.app.data.dto.post.PostCardDto
 
 interface CardRepository {
     suspend fun getCards(): List<CardDto>

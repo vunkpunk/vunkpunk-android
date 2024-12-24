@@ -1,4 +1,4 @@
-package com.vunkpunk.app.data.dto
+package com.vunkpunk.app.data.dto.post
 
 data class PostCardDto (
     val price: String,

@@ -1,6 +1,7 @@
 package com.vunkpunk.app.di
 
 import com.google.gson.Gson
+import com.vunkpunk.app.common.Token.TOKEN
 import com.vunkpunk.app.data.Api.CardApi
 import com.vunkpunk.app.data.Api.UserApi
 import com.vunkpunk.app.data.ApiImpl.CardApiImpl
@@ -22,15 +23,19 @@ import javax.inject.Singleton
 object AppModule {
 
     @Provides
+    fun provideTOKEN(): String {
+        return TOKEN.value
+    }
+    @Provides
     @Singleton
-    fun provideUserApi(client: HttpClient, gson: Gson): UserApi {
-        return UserApiImpl(client, gson)
+    fun provideUserApi(client: HttpClient, gson: Gson, token: String): UserApi {
+        return UserApiImpl(client, gson, token)
     }
 
     @Provides
     @Singleton
-    fun provideCardApi(client: HttpClient, gson: Gson): CardApi {
-        return CardApiImpl(client, gson)
+    fun provideCardApi(client: HttpClient, gson: Gson, token: String): CardApi {
+        return CardApiImpl(client, gson, token)
     }
 
     @Provides

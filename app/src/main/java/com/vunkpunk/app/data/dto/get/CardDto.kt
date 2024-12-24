@@ -1,4 +1,4 @@
-package com.vunkpunk.app.data.dto
+package com.vunkpunk.app.data.dto.get
 
 import com.vunkpunk.app.domain.model.CardDetail
 import com.vunkpunk.app.domain.model.CardMini
@@ -9,7 +9,7 @@ data class CardDto(
     val dormitory: String,
     val id: Int,
     val is_published: Boolean,
-    val photo: String,
+    val photo: String?,
     val price: String,
     val rating: Double,
     val title: String,

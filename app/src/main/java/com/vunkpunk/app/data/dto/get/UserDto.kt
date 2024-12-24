@@ -1,4 +1,4 @@
-package com.vunkpunk.app.data.dto
+package com.vunkpunk.app.data.dto.get
 
 import com.vunkpunk.app.domain.model.User
 

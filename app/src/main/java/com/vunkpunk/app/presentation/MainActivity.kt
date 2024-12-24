@@ -9,18 +9,27 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.vunkpunk.app.common.Constants.PARAM_CARD_ID
+import com.vunkpunk.app.common.Constants.PARAM_EMAIL
 import com.vunkpunk.app.common.Constants.PARAM_SEARCH
+import com.vunkpunk.app.common.Token.TOKEN
 import com.vunkpunk.app.presentation.card_detail.CardDetailScreen
 import com.vunkpunk.app.presentation.main.MainScreen
 import com.vunkpunk.app.presentation.profile.ProfileScreen
 import com.vunkpunk.app.presentation.about.AboutScreen
 import com.vunkpunk.app.presentation.create_card.PostCardScreen
-import com.vunkpunk.app.presentation.login_system.LoginSystemScreen
+import com.vunkpunk.app.presentation.login_system.code.CodeScreen
+import com.vunkpunk.app.presentation.login_system.login.LoginScreen
+import com.vunkpunk.app.presentation.login_system.sign_up.SignUpScreen
+import com.vunkpunk.app.presentation.login_system.welcome.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        var start = Screen.SearchScreen.route + "/{$PARAM_SEARCH}"
+        if (TOKEN.value == ""){
+            start = Screen.WelcomeScreen.route
+        }
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         window.statusBarColor = android.graphics.Color.TRANSPARENT
@@ -29,11 +38,15 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = Screen.LoginSystem.route
-                    // startDestination = Screen.MainScreen.route + "/{$PARAM_SEARCH}"
+                    startDestination = start
                 ) {
                     composable(
-                        route = Screen.MainScreen.route + "/{$PARAM_SEARCH}"
+                        route = Screen.SearchScreen.route + "/{$PARAM_SEARCH}"
+                    ) {
+                        MainScreen(navController)
+                    }
+                    composable(
+                        route = Screen.MainScreen.route
                     ) {
                         MainScreen(navController)
                     }
@@ -58,9 +71,24 @@ class MainActivity : ComponentActivity() {
                         AboutScreen(navController)
                     }
                     composable(
-                        route = Screen.LoginSystem.route,
+                        route = Screen.WelcomeScreen.route,
                     ) {
-                        LoginSystemScreen()
+                        WelcomeScreen(navController)
+                    }
+                    composable(
+                        route = Screen.SignUpScreen.route,
+                    ) {
+                        SignUpScreen(navController)
+                    }
+                    composable(
+                        route = Screen.CodeScreen.route + "/{$PARAM_EMAIL}",
+                    ) {
+                        CodeScreen(navController)
+                    }
+                    composable(
+                        route = Screen.LoginScreen.route,
+                    ) {
+                        LoginScreen(navController)
                     }
                 }
             }

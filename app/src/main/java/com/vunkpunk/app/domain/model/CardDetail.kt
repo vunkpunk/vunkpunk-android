@@ -5,7 +5,7 @@ data class CardDetail(
     val dormitory: String,
     val id: Int,
     val is_published: Boolean,
-    val photo: String,
+    val photo: String?,
     val price: String,
     val rating: Double,
     val title: String,
