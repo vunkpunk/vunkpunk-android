@@ -23,11 +23,7 @@ class PostCardViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _postCardState = mutableStateOf<PostCardState>(
-        PostCardState(
-            "Введите название...",
-            "Введите цену...",
-            "Введите описание..."
-        )
+        PostCardState()
     )
     private val _imagesState = mutableStateOf<List<Uri>>(emptyList())
 
@@ -78,13 +74,16 @@ class PostCardViewModel @Inject constructor(
             }
         }
 
-        val a = byteArrayOutputStream.toByteArray()
-        val bitmap = BitmapFactory.decodeByteArray(a, 0, a.size)
-        return a
+        return byteArrayOutputStream.toByteArray()
     }
 
     fun updateImages(images: List<Uri>) {
         _imagesState.value = images
+    }
+
+    fun resetState() {
+        _postCardState.value = _postCardState.value.copy(title = "", price = "", description = "")
+        _imagesState.value = emptyList()
     }
 
     fun createCard(title: String, price: String, description: String, images: List<ByteArray>) {
