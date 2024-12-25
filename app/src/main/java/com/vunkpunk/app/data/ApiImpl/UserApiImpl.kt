@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.vunkpunk.app.common.Constants.BASE_URL
 import com.vunkpunk.app.data.Api.UserApi
 import com.vunkpunk.app.data.dto.get.UserDto
+import com.vunkpunk.app.data.dto.patch.PatchUserDto
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.header
@@ -21,5 +22,9 @@ class UserApiImpl @Inject constructor(
         }
         val user = gson.fromJson(resp.bodyAsText(), UserDto::class.java)
         return user
+    }
+
+    override suspend fun updateUserProfile(userProfile: PatchUserDto) {
+        TODO("Not yet implemented")
     }
 }

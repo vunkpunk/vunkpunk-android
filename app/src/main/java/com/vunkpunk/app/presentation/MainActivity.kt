@@ -19,6 +19,7 @@ import com.vunkpunk.app.presentation.card_detail.CardDetailScreen
 import com.vunkpunk.app.presentation.main.MainScreen
 import com.vunkpunk.app.presentation.profile.ProfileScreen
 import com.vunkpunk.app.presentation.about.AboutScreen
+import com.vunkpunk.app.presentation.edit_profile.EditProfileScreen
 import com.vunkpunk.app.presentation.post_card.PostCardScreen
 import com.vunkpunk.app.presentation.post_card.PostCardViewModel
 import com.vunkpunk.app.presentation.login_system.code.CodeScreen
@@ -72,6 +73,11 @@ class MainActivity : ComponentActivity() {
                         route = Screen.ProfileScreen.route
                     ) {
                         ProfileScreen(navController)
+                    }
+                    composable(
+                        route = Screen.EditProfileScreen.route
+                    ) {
+                        EditProfileScreen(navController)
                     }
                     composable(
                         route = Screen.CardDetailScreen.route + "/{$PARAM_CARD_ID}",
