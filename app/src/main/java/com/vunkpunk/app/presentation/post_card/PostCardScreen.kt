@@ -25,6 +25,7 @@ import androidx.navigation.NavController
 import coil.decode.ImageSource
 import com.vunkpunk.app.common.Constants.PARAM_SEARCH
 import com.vunkpunk.app.presentation.Screen
+import com.vunkpunk.app.presentation.global_components.Background
 import com.vunkpunk.app.presentation.global_components.BottomNavigation
 import com.vunkpunk.app.presentation.global_components.HeadNavigation.HeaderNavigation
 import com.vunkpunk.app.presentation.theme.GeneralColor
@@ -65,12 +66,11 @@ fun Content(
 
     val context = LocalContext.current
     val postCardState by viewModel.postCardState
-
+    Background()
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(padding)
-            .background(color = MinorBackgroundColor),
+            .padding(padding),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Создать объявление", fontSize = 30.sp)
@@ -110,6 +110,7 @@ fun Content(
             viewModel.resetState()
             navController.navigate(Screen.SearchScreen.route +  "/{$PARAM_SEARCH}")
         }) {
+            Text("Upload")
         }
     }
 }

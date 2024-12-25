@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import com.vunkpunk.app.R
 import com.vunkpunk.app.presentation.Screen
@@ -39,7 +40,7 @@ import com.vunkpunk.app.presentation.theme.GeneralColor
 
 @Composable
 fun HeaderNavigation(navController: NavController) {
-    Box(modifier = Modifier.background(Color.Transparent).padding(top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding())) {
+    Box(modifier = Modifier.background(Color.Transparent).padding(top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()).zIndex(1f)) {
         Row(modifier = Modifier
             .fillMaxWidth()
             .padding(20.dp, 30.dp),

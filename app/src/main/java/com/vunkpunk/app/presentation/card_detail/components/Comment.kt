@@ -32,15 +32,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vunkpunk.app.R
 import com.vunkpunk.app.domain.model.CardMini
+import com.vunkpunk.app.presentation.theme.MinorBackgroundColor
 
 @Preview(showBackground = true)
 @Composable
 fun Comment() {
-    Column(modifier = Modifier.padding(10.dp)) {
+    Column(modifier = Modifier.background(color = MinorBackgroundColor,shape = RoundedCornerShape(10.dp)).padding(10.dp)) {
         // header with Name Surname
         Row(modifier = Modifier
             .height(30.dp)
-            .fillMaxWidth()){
+            .fillMaxWidth()
+
+        ){
             // Avatar
             Image(painter = painterResource(R.drawable.ic_launcher_background), contentDescription = null, modifier = Modifier
                 .size(30.dp)
