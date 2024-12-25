@@ -71,14 +71,29 @@ class EditProfileViewModel @Inject constructor(
     }
 
     fun setDefault() {
+        //TODO придумать чаво то получше...
+
         val state = _editProfileState.value
         val user = user.value.user
-        state.first_name = user!!.first_name
-        state.second_name = user.last_name
-        state.description = user.description
-        state.dormitory = user.dormitory
-        state.faculty = user.faculty
-        state.contact = user.contact ?: "Не указан"
+
+        if (state.first_name == "") {
+            state.first_name = user!!.first_name
+        }
+        if (state.second_name == "") {
+            state.second_name = user!!.last_name
+        }
+        if (state.dormitory == "") {
+            state.dormitory = user!!.dormitory
+        }
+        if (state.faculty == "") {
+            state.faculty = user!!.faculty
+        }
+        if (state.description == "") {
+            state.description = user!!.description
+        }
+        if (state.contact == "") {
+            state.contact = user!!.contact ?: "Не указан"
+        }
     }
 
     fun editFirstName(newName: String) {
