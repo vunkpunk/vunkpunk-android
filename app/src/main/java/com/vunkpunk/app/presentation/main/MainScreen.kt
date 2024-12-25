@@ -52,12 +52,12 @@ fun MainScreen(
 fun Content(navController: NavController, viewModel: MainViewModel, padding: PaddingValues) {
     val state = viewModel.state.value
     val cards: List<CardMini> = state.cardsMini
+    Background()
     Box(
         modifier = Modifier
             .wrapContentSize()
-            .padding(top = 0.dp, bottom = padding.calculateBottomPadding() - 15.dp)
+            .padding(padding)
     ) {
-        Background()
         LazyVerticalStaggeredGrid(
             columns = StaggeredGridCells.Adaptive(150.dp),
             contentPadding = PaddingValues(20.dp),

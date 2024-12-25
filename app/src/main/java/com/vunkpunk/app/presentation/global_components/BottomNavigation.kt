@@ -8,12 +8,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
@@ -34,6 +37,10 @@ import com.vunkpunk.app.R
 import com.vunkpunk.app.common.Constants.PARAM_SEARCH
 import com.vunkpunk.app.presentation.Screen
 import com.vunkpunk.app.presentation.theme.GeneralBackgroundColor
+import com.vunkpunk.app.presentation.theme.Pink40
+import com.vunkpunk.app.presentation.theme.Pink80
+import com.vunkpunk.app.presentation.theme.Purple80
+import com.vunkpunk.app.presentation.theme.PurpleGrey40
 
 @Composable
 fun BottomNavigation(navController: NavController) {
@@ -42,7 +49,7 @@ fun BottomNavigation(navController: NavController) {
     val userId =
         context.getSharedPreferences("auth_prefs", Context.MODE_PRIVATE).getInt("user_id", -1)
 
-    Column {
+    Column(modifier = Modifier.padding(bottom = 20.dp)) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -68,7 +75,7 @@ fun BottomNavigation(navController: NavController) {
                     modifier = Modifier
                         .size(50.dp)
                         .background(
-                            Color.Gray,
+                            Pink80,
                             shape = androidx.compose.foundation.shape.CircleShape
                         )
                         .align(Alignment.Center)
@@ -95,16 +102,31 @@ fun BottomNavigation(navController: NavController) {
             Box(
                 modifier = Modifier
                     .size(75.dp)
-                    .background(Color.Blue, shape = androidx.compose.foundation.shape.CircleShape)
+                    .background(Purple80, shape = androidx.compose.foundation.shape.CircleShape)
                     .align(Alignment.TopCenter)
                     .clickable { navController.navigate(Screen.PostCardScreen.route) }
                     .graphicsLayer(
-                        shadowElevation = 75F, // Глубина тени
+                        shadowElevation = 150F, // Глубина тени
                         shape = androidx.compose.foundation.shape.CircleShape, // Форма тени
                         clip = true, // Обрезка по форме
-                        translationY = 75F // Смещение тени вниз
+                        translationY = 25F // Смещение тени вниз
                     )
-            )
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.plus),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .size(50.dp)
+                        .align(Alignment.Center)
+                        .graphicsLayer(
+                            shadowElevation = 75F, // Глубина тени
+                            shape = androidx.compose.foundation.shape.CircleShape, // Форма тени
+                            clip = true, // Обрезка по форме
+                            translationY = -30F // Смещение тени вниз
+                        )
+                )
+            }
 
             // USER
             Box(
@@ -116,7 +138,7 @@ fun BottomNavigation(navController: NavController) {
                     modifier = Modifier
                         .size(50.dp)
                         .background(
-                            Color.Gray,
+                            Pink80,
                             shape = androidx.compose.foundation.shape.CircleShape
                         )
                         .align(Alignment.Center)
@@ -127,7 +149,8 @@ fun BottomNavigation(navController: NavController) {
                         )
                         .clickable {
                             navController.navigate(
-                                Screen.ProfileScreen.route)
+                                Screen.ProfileScreen.route
+                            )
                         }
 
                 ) {
