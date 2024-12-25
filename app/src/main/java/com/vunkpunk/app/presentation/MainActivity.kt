@@ -31,8 +31,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     val postCardViewModel: PostCardViewModel by viewModels()
     val editProfileViewModel: EditProfileViewModel by viewModels()
+
     var getImagesLauncher = registerForActivityResult(
         ActivityResultContracts.GetMultipleContents()
     ) { uris: List<Uri> ->
@@ -46,8 +48,9 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val sharedPreferences = getSharedPreferences("auth_prefs", Context.MODE_PRIVATE)
-        var start = Screen.SearchScreen.route + "/{$PARAM_SEARCH}"
-        if (sharedPreferences.getString("auth_token", null) == null){
+        val a = sharedPreferences.getInt("user_id", 1)
+        var start = Screen.MainScreen.route
+        if (sharedPreferences.getString("auth_token", null) == null) {
             start = Screen.WelcomeScreen.route
         }
         super.onCreate(savedInstanceState)
@@ -58,8 +61,7 @@ class MainActivity : ComponentActivity() {
             Surface() {
                 val navController = rememberNavController()
                 NavHost(
-                    navController = navController,
-                    startDestination = start
+                    navController = navController, startDestination = start
                 ) {
                     composable(
                         route = Screen.SearchScreen.route + "/{$PARAM_SEARCH}"
@@ -74,7 +76,7 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = Screen.PostCardScreen.route,
                     ) {
-                        PostCardScreen(navController, postCardViewModel) {openGallery()}
+                        PostCardScreen(navController, postCardViewModel) { openGallery() }
                     }
                     composable(
                         route = Screen.ProfileScreen.route
@@ -84,7 +86,9 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = Screen.EditProfileScreen.route
                     ) {
-                        EditProfileScreen(navController, editProfileViewModel) {openSingleGallery()}
+                        EditProfileScreen(
+                            navController, editProfileViewModel
+                        ) { openSingleGallery() }
                     }
                     composable(
                         route = Screen.CardDetailScreen.route + "/{$PARAM_CARD_ID}",

@@ -40,13 +40,18 @@ object AppModule {
 
     @Provides
     fun provideTOKEN(sharedPreferences: SharedPreferences): String {
-        return sharedPreferences.getString("auth_token", "") ?: "" // Возвращаем сохранённый токен или пустую строку
+        return sharedPreferences.getString("auth_token", "") ?: ""
+    }
+
+    @Provides
+    fun provideUserId(sharedPreferences: SharedPreferences): Int {
+        return sharedPreferences.getInt("user_id", 0)
     }
 
     @Provides
     @Singleton
-    fun provideUserApi(client: HttpClient, gson: Gson, token: String): UserApi {
-        return UserApiImpl(client, gson, token)
+    fun provideUserApi(client: HttpClient, gson: Gson, token: String, userId: Int): UserApi {
+        return UserApiImpl(client, gson, token, userId)
     }
 
     @Provides

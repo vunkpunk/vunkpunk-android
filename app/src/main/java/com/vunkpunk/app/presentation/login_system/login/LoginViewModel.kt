@@ -35,7 +35,7 @@ class LoginViewModel @Inject constructor(
 
             else -> {
                 val eventString = event.toString()
-                Log.d("SignUpViewModel", "Unexpected event: $eventString")
+                Log.d("LoginViewModel", "Unexpected event: $eventString")
             }
         }
     }
@@ -51,7 +51,7 @@ class LoginViewModel @Inject constructor(
                 }
                 is Resource.Error -> {
                     val r = result.message
-                    Log.d("CodeViewModel", "error: $r")
+                    Log.d("LoginViewModel", "error: $r")
                     _state.value.error.value = result.message ?: "An unexpected error occurred"
                 }
             }

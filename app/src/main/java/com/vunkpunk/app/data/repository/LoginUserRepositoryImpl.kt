@@ -4,6 +4,7 @@ import com.vunkpunk.app.data.Api.LoginUserApi
 import com.vunkpunk.app.data.dto.post.LogInUserDto
 import com.vunkpunk.app.data.dto.post.SendCodeDto
 import com.vunkpunk.app.data.dto.post.SignUpUserDto
+import com.vunkpunk.app.data.dto.response.LogInUserDtoResponseDto
 import com.vunkpunk.app.domain.repository.LoginUserRepository
 import javax.inject.Inject
 
@@ -15,7 +16,7 @@ class LoginUserRepositoryImpl @Inject constructor(
         return api.signUpUser(signUpUser)
     }
 
-    override suspend fun logInUser(logInUser: LogInUserDto): String {
+    override suspend fun logInUser(logInUser: LogInUserDto): LogInUserDtoResponseDto {
         return api.logInUser(logInUser)
     }
 

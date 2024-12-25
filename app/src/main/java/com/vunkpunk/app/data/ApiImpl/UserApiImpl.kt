@@ -2,7 +2,6 @@ package com.vunkpunk.app.data.ApiImpl
 
 import com.google.gson.Gson
 import com.vunkpunk.app.common.Constants.BASE_URL
-import com.vunkpunk.app.common.Constants.USER_ID
 import com.vunkpunk.app.data.Api.UserApi
 import com.vunkpunk.app.data.dto.get.UserDto
 import com.vunkpunk.app.data.dto.patch.PatchUserDto
@@ -25,10 +24,11 @@ import javax.inject.Inject
 class UserApiImpl @Inject constructor(
     private val client: HttpClient,
     private val gson: Gson,
-    private val token: String
+    private val token: String,
+    private val userId: Int
 ) : UserApi {
     override suspend fun getUserById(userId: String): UserDto {
-        val resp = client.get("$BASE_URL/user/$userId") {
+        val resp = client.get("$BASE_URL/user/$userId/") {
             header("Authorization", "Token $token")
         }
         val user = gson.fromJson(resp.bodyAsText(), UserDto::class.java)
@@ -50,7 +50,7 @@ class UserApiImpl @Inject constructor(
         }
 
         val resp = client.submitFormWithBinaryData(
-            "$BASE_URL/user/$USER_ID", formData
+            "$BASE_URL/user/$userId", formData
         ) {
             header("Authorization", "Token $token")
             header("Content-Type", "multipart/form-data")

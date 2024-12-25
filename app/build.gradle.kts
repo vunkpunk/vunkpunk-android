@@ -106,6 +106,4 @@ dependencies {
 
     // Fonts
     implementation("androidx.compose.ui:ui-text-google-fonts:1.5.0") // Проверьте последнюю версию!
-
-
 }

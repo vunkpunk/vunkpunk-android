@@ -1,10 +1,10 @@
 package com.vunkpunk.app.presentation.profile
 
+import android.content.SharedPreferences
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vunkpunk.app.common.Constants.USER_ID
 import com.vunkpunk.app.common.Resource
 import com.vunkpunk.app.domain.model.CardMini
 import com.vunkpunk.app.domain.use_case.getCards.GetCardsMiniFromUserUseCase
@@ -19,6 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
+    sharedPreferences: SharedPreferences,
     private val getUserUseCase: GetUserUseCase,
     private val getCardsMiniFromUserUseCase: GetCardsMiniFromUserUseCase
 ) : ViewModel(){
@@ -32,6 +33,7 @@ class ProfileViewModel @Inject constructor(
     val unpublishedCards: State<MainState> = _unpublishedCards
 
     init {
+        val USER_ID = sharedPreferences.getInt("user_id", -1).toString() ?: ""
         getUser(USER_ID)
         getPublishedCardsMiniFromUser(USER_ID)
         getUnpublishedCardsMiniFromUser(USER_ID)

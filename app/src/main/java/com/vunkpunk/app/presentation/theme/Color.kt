@@ -16,3 +16,5 @@ val MinorBackgroundColor = Color(0xFFF5F5F5)
 val GeneralColor = Color(0xFF2E8B57)
 val GeneralTextColor = Color(0xFF333333)
 val MinorTextColor = Color(0xFF666666)
+
+val CardBackgroundColor = Color(0xFFFFFFFF)
