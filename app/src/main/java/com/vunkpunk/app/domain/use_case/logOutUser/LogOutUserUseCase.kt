@@ -17,8 +17,8 @@ class LogOutUserUseCase @Inject constructor(
     ): Flow<Resource<String>> = flow {
         try {
             emit(Resource.Loading())
-            sharedPreferences.edit().putString("auth_token", "").apply()
-            sharedPreferences.edit().putInt("user_id", -1).apply()
+            sharedPreferences.edit().remove("auth_token").apply()
+            sharedPreferences.edit().remove("user_id").apply()
             emit(Resource.Success(""))
         } catch (e: HttpException) {
             emit(

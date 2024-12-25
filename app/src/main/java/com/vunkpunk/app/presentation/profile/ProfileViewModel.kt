@@ -1,6 +1,8 @@
 package com.vunkpunk.app.presentation.profile
 
+import android.content.Context
 import android.content.SharedPreferences
+import android.net.Uri
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -9,6 +11,7 @@ import com.vunkpunk.app.common.Resource
 import com.vunkpunk.app.domain.model.CardMini
 import com.vunkpunk.app.domain.use_case.getCards.GetCardsMiniFromUserUseCase
 import com.vunkpunk.app.domain.use_case.getCards.GetCardsMiniUseCase
+import com.vunkpunk.app.domain.use_case.logOutUser.LogOutUserUseCase
 import com.vunkpunk.app.presentation.main.MainState
 import com.vunkpunk.domain.use_case.getUser.GetUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +24,8 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     sharedPreferences: SharedPreferences,
     private val getUserUseCase: GetUserUseCase,
-    private val getCardsMiniFromUserUseCase: GetCardsMiniFromUserUseCase
+    private val getCardsMiniFromUserUseCase: GetCardsMiniFromUserUseCase,
+    private val logOutUserUseCase: LogOutUserUseCase
 ) : ViewModel(){
     private val _user = mutableStateOf(ProfileState())
     val user: State<ProfileState> = _user
@@ -37,6 +41,18 @@ class ProfileViewModel @Inject constructor(
         getUser(USER_ID)
         getPublishedCardsMiniFromUser(USER_ID)
         getUnpublishedCardsMiniFromUser(USER_ID)
+    }
+
+    sealed class UiEvent {
+        object Logout : UiEvent()
+    }
+
+    fun onEvent(event: UiEvent) {
+        when (event) {
+            is UiEvent.Logout -> {
+                logOutUserUseCase.invoke()
+            }
+        }
     }
 
     private fun getUser(userId: String) {
