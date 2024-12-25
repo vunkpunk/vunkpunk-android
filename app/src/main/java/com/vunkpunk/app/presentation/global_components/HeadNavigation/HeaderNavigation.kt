@@ -23,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,21 +36,12 @@ import com.vunkpunk.app.presentation.theme.GeneralColor
 
 @Composable
 fun HeaderNavigation(navController: NavController) {
-    Box(modifier = Modifier.background(color = GeneralColor)) {
+    Box(modifier = Modifier.background(Color.Transparent)) {
         Row(modifier = Modifier
             .fillMaxWidth()
             .padding(20.dp, 30.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(10.dp)){
-
-            // Avatar
-            Image(modifier = Modifier
-                .size(40.dp)
-                .clip(CircleShape)
-                .clickable { navController.navigate(Screen.ProfileScreen.route) },
-                painter = painterResource(id = R.drawable.profile_avatar),
-                contentDescription = "")
-
             SearchBar(navController)
         }
     }

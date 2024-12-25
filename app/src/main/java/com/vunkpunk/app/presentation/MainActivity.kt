@@ -44,8 +44,8 @@ class MainActivity : ComponentActivity() {
             start = Screen.WelcomeScreen.route
         }
         super.onCreate(savedInstanceState)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.statusBarColor = android.graphics.Color.TRANSPARENT
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
+//        window.statusBarColor = android.graphics.Color.TRANSPARENT
 
         setContent {
             Surface() {
