@@ -3,6 +3,7 @@ package com.vunkpunk.app.data.repository
 import com.vunkpunk.app.data.Api.LoginUserApi
 import com.vunkpunk.app.data.Api.UserApi
 import com.vunkpunk.app.data.dto.get.UserDto
+import com.vunkpunk.app.data.dto.patch.PatchUserDto
 import com.vunkpunk.app.data.dto.post.LogInUserDto
 import com.vunkpunk.app.data.dto.post.SendCodeDto
 import com.vunkpunk.app.data.dto.post.SignUpUserDto
@@ -16,5 +17,9 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun getUserById(userId: String): UserDto {
         return api.getUserById(userId)
+    }
+
+    override suspend fun updateUserProfile(userProfile: PatchUserDto, image: ByteArray) {
+        api.updateUserProfile(userProfile, image)
     }
 }

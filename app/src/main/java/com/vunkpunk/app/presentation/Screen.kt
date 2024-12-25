@@ -10,6 +10,7 @@ sealed class Screen(val route: String) {
     object MainScreen : Screen("main_screen/{$PARAM_SEARCH}")
     object PostCardScreen : Screen("post_card_screen")
     object ProfileScreen : Screen("profile_screen")
+    object EditProfileScreen : Screen("edit_profile_screen")
     object CardDetailScreen: Screen("card_detail_screen/{$PARAM_CARD_ID}")
     object AboutScreen: Screen("about_screen")
     object WelcomeScreen: Screen("welcome")
