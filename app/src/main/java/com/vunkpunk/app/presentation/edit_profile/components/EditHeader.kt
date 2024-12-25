@@ -8,10 +8,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -21,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -36,51 +40,63 @@ fun EditHeader(
     viewModel: EditProfileViewModel,
     openGallery: () -> Unit
 ) {
-    Row(
+    Surface(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 30.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    )
-    {
-        val user = viewModel.user.value.user!!
-        val editProfileState by viewModel.editProfileState
-        val image by viewModel.imageState
+            .height(165.dp),
+        shadowElevation = 4.dp,
+        shape = RoundedCornerShape(25.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        )
+        {
+            val user = viewModel.user.value.user!!
+            val editProfileState by viewModel.editProfileState
+            val image by viewModel.imageState
 
-        if (image.toString() == "") {
-            Image(modifier = Modifier
-                .clip(CircleShape)
-                .size(100.dp)
-                .clickable { openGallery() },
-                bitmap = user.photo.asImageBitmap(),
-                contentDescription = ""
-            )
-        } else {
-            Image(
-                painter = rememberImagePainter(image),
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .size(100.dp)
-                    .clickable { openGallery() },
-                contentDescription = "Artist image"
-            )
-        }
+            Spacer(modifier = Modifier.width(20.dp))
 
-        Spacer(modifier = Modifier.width(20.dp))
+            if (image.toString() == "") {
+                Image(
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .size(100.dp)
+                        .clickable { openGallery() },
+                    bitmap = user.photo.asImageBitmap(),
+                    contentScale = ContentScale.FillBounds,
+                    contentDescription = ""
+                )
+            } else {
+                Image(
+                    painter = rememberImagePainter(image),
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .size(100.dp)
+                        .clickable { openGallery() },
+                    contentDescription = "Artist image",
+                    contentScale = ContentScale.FillBounds
+                )
+            }
 
-        Column(
-            modifier = Modifier,
-            verticalArrangement = Arrangement.Center
-        ) {
-            EditProfileTextField(
-                editProfileState.first_name,
-                { viewModel.editFirstName(it) }
-            )
-            EditProfileTextField(
-                editProfileState.second_name,
-                { viewModel.editSecondName(it) }
-            )
+            Spacer(modifier = Modifier.weight(1f))
+
+            Column(
+                modifier = Modifier,
+                verticalArrangement = Arrangement.Center
+            ) {
+                EditProfileTextField(
+                    editProfileState.first_name,
+                    { viewModel.editFirstName(it) }
+                )
+                EditProfileTextField(
+                    editProfileState.second_name,
+                    { viewModel.editSecondName(it) }
+                )
+            }
+            Spacer(modifier = Modifier.width(20.dp))
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.vunkpunk.app.presentation.profile.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.vunkpunk.app.presentation.theme.GeneralBackgroundColor
+import com.vunkpunk.app.presentation.theme.GeneralTextColor
 
 @Preview(showBackground = true)
 @Composable
@@ -25,13 +28,15 @@ fun HistoryDivider() {
         horizontalArrangement = Arrangement.Absolute.Center
     ) {
         HorizontalDivider(modifier = Modifier
+            .background(color = GeneralTextColor)
             .width(100.dp)
             .padding(0.dp, 0.dp, 15.dp, 0.dp),
-            thickness = 1.dp)
+            thickness = 3.dp)
         Text( text = "История", fontSize = 24.sp)
         HorizontalDivider(modifier = Modifier
+            .background(color = GeneralTextColor)
             .width(100.dp)
             .padding(15.dp, 0.dp, 0.dp, 0.dp),
-            thickness = 1.dp)
+            thickness = 3.dp)
     }
 }

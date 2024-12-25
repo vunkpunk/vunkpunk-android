@@ -24,6 +24,7 @@ import com.vunkpunk.app.presentation.edit_profile.components.EditHeader
 import com.vunkpunk.app.presentation.edit_profile.components.EditProfileDescription
 import com.vunkpunk.app.presentation.global_components.BottomNavigation
 import com.vunkpunk.app.presentation.global_components.HeadNavigation.HeaderNavigation
+import com.vunkpunk.app.presentation.login_system.Background
 import com.vunkpunk.app.presentation.profile.components.Header
 import com.vunkpunk.app.presentation.profile.components.HistoryDivider
 import com.vunkpunk.app.presentation.profile.components.ListOfMiniCards
@@ -62,6 +63,8 @@ fun Content(
     val unpublishedCards: List<CardMini> = viewModel.unpublishedCards.value.cardsMini
     val context = LocalContext.current
 
+    Background()
+
     if (user.user == null) {
         Box(modifier = Modifier.fillMaxSize()) {
             Text(user.error, modifier = Modifier.align(Alignment.Center))
@@ -71,7 +74,6 @@ fun Content(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .background(color = MinorBackgroundColor)
         )
         {
             LazyColumn(

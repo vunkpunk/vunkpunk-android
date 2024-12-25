@@ -26,6 +26,7 @@ import com.vunkpunk.app.presentation.Screen
 import com.vunkpunk.app.presentation.global_components.BottomNavigation
 import com.vunkpunk.app.presentation.global_components.CardMini
 import com.vunkpunk.app.presentation.global_components.HeadNavigation.HeaderNavigation
+import com.vunkpunk.app.presentation.login_system.Background
 import com.vunkpunk.app.presentation.profile.components.Header
 import com.vunkpunk.app.presentation.profile.components.HistoryDivider
 import com.vunkpunk.app.presentation.profile.components.ListOfMiniCards
@@ -58,6 +59,7 @@ fun Content(navController: NavController, viewModel: ProfileViewModel, padding: 
     val publishedCards: List<CardMini> = viewModel.publishedCards.value.cardsMini
     val unpublishedCards: List<CardMini> = viewModel.unpublishedCards.value.cardsMini
 
+    Background()
     if(user.user == null){
         Box(modifier = Modifier.fillMaxSize()) {
             Text(user.error, modifier = Modifier.align(Alignment.Center))
@@ -67,7 +69,6 @@ fun Content(navController: NavController, viewModel: ProfileViewModel, padding: 
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .background(color = MinorBackgroundColor)
         )
         {
             LazyColumn(
@@ -81,15 +82,9 @@ fun Content(navController: NavController, viewModel: ProfileViewModel, padding: 
 
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    ProfileDescription(user.user!!)
+                    ProfileDescription(user.user!!, navController)
 
                     Spacer(modifier = Modifier.height(20.dp))
-
-                    Button(onClick = {navController.navigate(Screen.EditProfileScreen.route)}) {
-                        
-                    }
-
-                    Spacer(modifier = Modifier.height(50.dp))
                 }
 
                 item {
