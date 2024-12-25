@@ -28,7 +28,7 @@ class UserApiImpl @Inject constructor(
     private val userId: Int
 ) : UserApi {
     override suspend fun getUserById(userId: String): UserDto {
-        val resp = client.get("$BASE_URL/user/$userId/") {
+        val resp = client.get("$BASE_URL/user/$userId") {
             header("Authorization", "Token $token")
         }
         val user = gson.fromJson(resp.bodyAsText(), UserDto::class.java)
@@ -50,7 +50,7 @@ class UserApiImpl @Inject constructor(
         }
 
         val resp = client.submitFormWithBinaryData(
-            "$BASE_URL/user/$userId", formData
+            "$BASE_URL/user/$userId/", formData
         ) {
             header("Authorization", "Token $token")
             header("Content-Type", "multipart/form-data")

@@ -15,7 +15,7 @@ import com.vunkpunk.app.presentation.global_components.CardMini
 @Composable
 fun ListOfMiniCards(cards: List<CardMini>, navController: NavController) {
 
-    val _height = cards.size * 200
+    val _height = cards.size * 150
 
     LazyVerticalStaggeredGrid(
         modifier = Modifier.height(_height.dp),

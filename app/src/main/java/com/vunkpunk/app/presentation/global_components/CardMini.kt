@@ -61,7 +61,7 @@ fun CardMini(card: CardMini, navController: NavController) {
                     .height(20.dp)
             )
             Image(
-                painter = painterResource(R.drawable.ic_launcher_background),
+                bitmap = card.photo.asImageBitmap(),
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
                 modifier = Modifier
