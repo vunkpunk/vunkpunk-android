@@ -1,5 +1,6 @@
 package com.vunkpunk.app.presentation.global_components
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -23,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,12 +32,16 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.vunkpunk.app.R
 import com.vunkpunk.app.common.Constants.PARAM_SEARCH
-import com.vunkpunk.app.common.Token.ID
 import com.vunkpunk.app.presentation.Screen
 import com.vunkpunk.app.presentation.theme.GeneralBackgroundColor
 
 @Composable
 fun BottomNavigation(navController: NavController) {
+
+    val context = LocalContext.current
+    val userId =
+        context.getSharedPreferences("auth_prefs", Context.MODE_PRIVATE).getInt("user_id", -1)
+
     Column {
         Box(
             modifier = Modifier
@@ -119,7 +125,10 @@ fun BottomNavigation(navController: NavController) {
                             shape = androidx.compose.foundation.shape.CircleShape, // Форма тени
                             clip = true, // Обрезка по форме
                         )
-                        .clickable { navController.navigate(Screen.ProfileScreen.route + "/$ID") }
+                        .clickable {
+                            navController.navigate(
+                                Screen.ProfileScreen.route)
+                        }
 
                 ) {
                     Image(

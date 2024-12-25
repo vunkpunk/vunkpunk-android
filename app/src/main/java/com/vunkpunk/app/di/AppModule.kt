@@ -1,7 +1,8 @@
 package com.vunkpunk.app.di
 
+import android.content.Context
+import android.content.SharedPreferences
 import com.google.gson.Gson
-import com.vunkpunk.app.common.Token.TOKEN
 import com.vunkpunk.app.data.Api.CardApi
 import com.vunkpunk.app.data.Api.PhotoApi
 import com.vunkpunk.app.data.Api.LoginUserApi
@@ -21,6 +22,7 @@ import com.vunkpunk.app.domain.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
@@ -31,13 +33,25 @@ import javax.inject.Singleton
 object AppModule {
 
     @Provides
-    fun provideTOKEN(): String {
-        return TOKEN.value
+    @Singleton
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("auth_prefs", Context.MODE_PRIVATE)
     }
+
+    @Provides
+    fun provideTOKEN(sharedPreferences: SharedPreferences): String {
+        return sharedPreferences.getString("auth_token", "") ?: ""
+    }
+
+    @Provides
+    fun provideUserId(sharedPreferences: SharedPreferences): Int {
+        return sharedPreferences.getInt("user_id", 0)
+    }
+
     @Provides
     @Singleton
-    fun provideUserApi(client: HttpClient, gson: Gson, token: String): UserApi {
-        return UserApiImpl(client, gson, token)
+    fun provideUserApi(client: HttpClient, gson: Gson, token: String, userId: Int): UserApi {
+        return UserApiImpl(client, gson, token, userId)
     }
 
     @Provides

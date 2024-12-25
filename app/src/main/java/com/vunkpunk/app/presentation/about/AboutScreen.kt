@@ -20,7 +20,6 @@ import com.vunkpunk.app.presentation.global_components.HeadNavigation.HeaderNavi
 
 @Composable
 fun AboutScreen(navController: NavController){
-
     Scaffold(
         topBar = {
             HeaderNavigation(navController)
