@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -31,7 +32,11 @@ import com.vunkpunk.app.presentation.theme.MinorBackgroundColor
 
 
 @Composable
-fun EditProfileScreen(navController: NavController, viewModel: EditProfileViewModel = hiltViewModel()){
+fun EditProfileScreen(
+    navController: NavController,
+    viewModel: EditProfileViewModel = hiltViewModel(),
+    openGallery: () -> Unit
+) {
     Scaffold(
         topBar = {
             HeaderNavigation(navController)
@@ -40,18 +45,24 @@ fun EditProfileScreen(navController: NavController, viewModel: EditProfileViewMo
             BottomNavigation(navController)
         }
     ) { innerPadding ->
-        Content(navController = navController, viewModel, innerPadding)
+        Content(navController = navController, viewModel, openGallery, innerPadding)
     }
 }
 
 
 @Composable
-fun Content(navController: NavController, viewModel: EditProfileViewModel, padding: PaddingValues) {
+fun Content(
+    navController: NavController,
+    viewModel: EditProfileViewModel,
+    openGallery: () -> Unit,
+    padding: PaddingValues
+) {
     val user = viewModel.user.value
     val publishedCards: List<CardMini> = viewModel.publishedCards.value.cardsMini
     val unpublishedCards: List<CardMini> = viewModel.unpublishedCards.value.cardsMini
+    val context = LocalContext.current
 
-    if(user.user == null){
+    if (user.user == null) {
         Box(modifier = Modifier.fillMaxSize()) {
             Text(user.error, modifier = Modifier.align(Alignment.Center))
         }
@@ -70,7 +81,7 @@ fun Content(navController: NavController, viewModel: EditProfileViewModel, paddi
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 item {
-                    EditHeader(navController, viewModel)
+                    EditHeader(navController, viewModel, openGallery)
 
                     Spacer(modifier = Modifier.height(20.dp))
 
@@ -78,7 +89,10 @@ fun Content(navController: NavController, viewModel: EditProfileViewModel, paddi
 
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    Button(onClick = {navController.navigate(Screen.ProfileScreen.route)}) {
+                    Button(onClick = {
+                        viewModel.onEvent(EditProfileViewModel.UiEvent.PatchProfile(context))
+                        navController.navigate(Screen.ProfileScreen.route)
+                    }) {
 
                     }
 

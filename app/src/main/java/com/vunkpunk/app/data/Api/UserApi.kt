@@ -5,5 +5,5 @@ import com.vunkpunk.app.data.dto.patch.PatchUserDto
 
 interface UserApi {
     suspend fun getUserById(userId: String): UserDto
-    suspend fun updateUserProfile(userProfile: PatchUserDto)
+    suspend fun updateUserProfile(userProfile: PatchUserDto, image: ByteArray)
 }

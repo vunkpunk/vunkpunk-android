@@ -1,12 +1,16 @@
 package com.vunkpunk.app.presentation.edit_profile.components
 
+import android.graphics.BitmapFactory
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -24,9 +28,14 @@ import coil.compose.rememberImagePainter
 import com.vunkpunk.app.presentation.edit_profile.EditProfileViewModel
 import com.vunkpunk.app.presentation.theme.GeneralTextColor
 import com.vunkpunk.app.presentation.theme.MinorTextColor
+import java.io.File
 
 @Composable
-fun EditHeader(navController: NavController, viewModel: EditProfileViewModel) {
+fun EditHeader(
+    navController: NavController,
+    viewModel: EditProfileViewModel,
+    openGallery: () -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -37,14 +46,28 @@ fun EditHeader(navController: NavController, viewModel: EditProfileViewModel) {
     {
         val user = viewModel.user.value.user!!
         val editProfileState by viewModel.editProfileState
+        val image by viewModel.imageState
 
-        Image(
-            bitmap = user.photo.asImageBitmap(),
-            modifier = Modifier
+        if (image.toString() == "") {
+            Image(modifier = Modifier
                 .clip(CircleShape)
-                .size(100.dp),
-            contentDescription = "Artist image"
-        )
+                .size(100.dp)
+                .clickable { openGallery() },
+                bitmap = user.photo.asImageBitmap(),
+                contentDescription = ""
+            )
+        } else {
+            Image(
+                painter = rememberImagePainter(image),
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .size(100.dp)
+                    .clickable { openGallery() },
+                contentDescription = "Artist image"
+            )
+        }
+
+        Spacer(modifier = Modifier.width(20.dp))
 
         Column(
             modifier = Modifier,

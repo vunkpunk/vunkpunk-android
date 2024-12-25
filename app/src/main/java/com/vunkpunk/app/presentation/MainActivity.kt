@@ -20,6 +20,7 @@ import com.vunkpunk.app.presentation.main.MainScreen
 import com.vunkpunk.app.presentation.profile.ProfileScreen
 import com.vunkpunk.app.presentation.about.AboutScreen
 import com.vunkpunk.app.presentation.edit_profile.EditProfileScreen
+import com.vunkpunk.app.presentation.edit_profile.EditProfileViewModel
 import com.vunkpunk.app.presentation.post_card.PostCardScreen
 import com.vunkpunk.app.presentation.post_card.PostCardViewModel
 import com.vunkpunk.app.presentation.login_system.code.CodeScreen
@@ -31,10 +32,16 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     val postCardViewModel: PostCardViewModel by viewModels()
+    val editProfileViewModel: EditProfileViewModel by viewModels()
     var getImagesLauncher = registerForActivityResult(
         ActivityResultContracts.GetMultipleContents()
     ) { uris: List<Uri> ->
         postCardViewModel.onEvent(PostCardViewModel.UiEvent.AddImages(uris))
+    }
+    var getImageLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        editProfileViewModel.onEvent(EditProfileViewModel.UiEvent.AddImage(uri ?: Uri.EMPTY))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,7 +84,7 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = Screen.EditProfileScreen.route
                     ) {
-                        EditProfileScreen(navController)
+                        EditProfileScreen(navController, editProfileViewModel) {openSingleGallery()}
                     }
                     composable(
                         route = Screen.CardDetailScreen.route + "/{$PARAM_CARD_ID}",
@@ -116,5 +123,9 @@ class MainActivity : ComponentActivity() {
 
     private fun openGallery() {
         getImagesLauncher.launch("image/*")
+    }
+
+    private fun openSingleGallery() {
+        getImageLauncher.launch("image/*")
     }
 }

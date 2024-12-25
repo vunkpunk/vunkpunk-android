@@ -19,7 +19,7 @@ class UserRepositoryImpl @Inject constructor(
         return api.getUserById(userId)
     }
 
-    override suspend fun updateUserProfile(userProfile: PatchUserDto) {
-        api.updateUserProfile(userProfile)
+    override suspend fun updateUserProfile(userProfile: PatchUserDto, image: ByteArray) {
+        api.updateUserProfile(userProfile, image)
     }
 }
